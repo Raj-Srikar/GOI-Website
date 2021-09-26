@@ -1,4 +1,3 @@
-from os import close
 import tkinter as tk
 import tkinter.font as font
 from tkinter import messagebox as mb
