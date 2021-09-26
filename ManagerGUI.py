@@ -29,7 +29,7 @@ def goto_addMap():
     lbl_addMap_title['text'] = 'Add New Map'
     clear_fields()
     frm_home.grid_remove()
-    frm_addMap.grid()
+    frm_addMap.grid(row=1)
     frm_mapName.grid_remove()
     frm_mapDeleted.grid_remove()
 
@@ -157,11 +157,14 @@ def delete_map():
     btn_mapName_ok['command'] = ok_mapNameDelete
 
 def publishChanges():
-    with open('maps.json','w') as outf:
-        outf.write(json.dumps(allMapJSON, indent=4))
-        outf.close()
-    mb.showinfo('Changes Published', 'Successfully Published all the changes to the JSON file!\nClick "Ok" to quit the application.')
-    window.destroy()
+    confirmPublish = mb.askyesno('Confirm Publish', 'Are you sure you want to publish the changes you\'ve made?')
+    if confirmPublish:
+        with open('maps.json','w') as outf:
+            outf.write(json.dumps(allMapJSON, indent=4))
+            outf.close()
+        mb.showinfo('Changes Published', 'Successfully Published all the changes to the JSON file!\nClick "Ok" to quit the application.')
+        window.destroy()
+    else: mb.showwarning('Cancelled', 'Cancelled Publishing the Changes!')
 
 window = tk.Tk()
 window.title('JSON Manager')
@@ -251,7 +254,7 @@ frm_mapName_btns.grid()
 frm_mapDeleted = tk.Frame(window)
 lbl_delete_title = tk.Label(frm_mapDeleted,text='Deleted a Map',font=('Times',25,'bold'))
 lbl_delete_title.grid(pady=20)
-lbl_mapDeleted = tk.Label(frm_mapDeleted,text='____ map\nhas been deleted successfully!', font=('Helevetica',15))
+lbl_mapDeleted = tk.Label(frm_mapDeleted,font=('Helevetica',15))
 lbl_mapDeleted.grid(pady=20)
 btn_mapDeleted = tk.Button(frm_mapDeleted,text='Home',width=10,height=2,font=fnt_info_btns,command=goto_home)
 btn_mapDeleted.grid(pady=20)
