@@ -479,9 +479,8 @@
     {
         "map": "Pacer Test",
         "creator": "Permutative",
-        "length": "Short(Note by Permutative:)",
+        "length": "Short",
         "video": "images/noVideo.png",
-        "Notes by Permutative":"Not meant to be an actual map, its a speedrun practice and assessment tool. Hence it may be both difficult and pointless to try to rate it. Make sure to read the rules and/or the instructions before playing the map.",
         "drive": "https://drive.google.com/file/d/11kSj0Bs7mkz_2FtI5VxQvvX2VUHomfYo/view?usp=sharing"
     }
 ]
