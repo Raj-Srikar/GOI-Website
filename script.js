@@ -305,6 +305,20 @@ function modifyDisplay(sub) {
  prevScrollpos = currentScrollPos;
 }
 
+function mobileNotSupported(){
+    w = screen.width;
+    let bod = document.getElementsByTagName('body')[0];
+    if(w < 375){
+        bod.remove();
+        newBod = document.createElement('body');
+        newBod.innerHTML = 'Mobile Version Of This Website Isn\'t Available As Of Now. Either Enable Desktop Version In Your Mobile Browser, Or Consider Switching To PC For Better Experience.';
+        newBod.style = "background-image: url(https://i.imgur.com/CC8vwXy.png);background-size: auto;background-color: #97d6f8;background-position-y: 35%;text-align: center;margin: 95% 10px;color: #1e6394;";
+        bod.style.display = 'none';
+        docHtml = document.getElementsByTagName('html')[0];
+        docHtml.appendChild(newBod);
+    }
+}
+
 fetchJSON();
 setTimeout(function(){
 	conent_list();
@@ -312,3 +326,4 @@ setTimeout(function(){
 	add_subMenu_content(lengths,lengths_lc,1);
 	alphaSort();
 }, 1000);
+mobileNotSupported()
