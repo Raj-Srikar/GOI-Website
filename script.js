@@ -312,7 +312,7 @@ function mobileNotSupported(){
         bod.remove();
         newBod = document.createElement('body');
         newBod.innerHTML = 'Mobile Version Of This Website Isn\'t Available As Of Now. Please Consider Switching To PC For Better Experience.';
-        newBod.style = "background-image: url(https://i.imgur.com/CC8vwXy.png);background-size: auto;background-color: #97d6f8;background-position-y: 35%;text-align: center;margin: 95% 10px;color: #1e6394;";
+        newBod.style = "background-image: url(https://i.imgur.com/CC8vwXy.png);background-size: auto;background-color: #97d6f8;background-position-y: 35%;text-align: center;margin: 95% 10px 0;color: #1e6394;";
         bod.style.display = 'none';
         docHtml = document.getElementsByTagName('html')[0];
         docHtml.appendChild(newBod);
