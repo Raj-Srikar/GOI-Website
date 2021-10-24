@@ -285,6 +285,17 @@ article>p>span{
   padding-left: 10px;
 }
 
+footer{
+  color: white;
+  border-top: 2px solid white;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  font-family: monospace;
+  font-size: 17px;
+  background: #00000088;
+}
+
 @font-face{
   font-family: Parrish;
   src: url('fonts/Parrish.ttf');

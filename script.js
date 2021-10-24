@@ -91,9 +91,9 @@ function alphaSort() {
 	    }
 	}
 	if (getAlphaMain) {mainTag = newMain.cloneNode(true);getAlphaMain=false;}
-	body = oldMain.parentNode;
+	mainDiv = oldMain.parentNode;
 	oldMain.remove();
-	body.appendChild(newMain)
+	mainDiv.appendChild(newMain)
 }
 
 spans = mainTag.getElementsByTagName('span');
@@ -227,7 +227,7 @@ function filter_by_content(content_tag, zeroOne) {
 	newMainTag = mainTag;
 	thisMain = document.getElementsByTagName('main')[0];
 	thisMain.remove();
-	body.appendChild(newMainTag);
+	mainDiv.appendChild(newMainTag);
 	thisMain = document.getElementsByTagName('main')[0];
 	mainByCreator = document.createElement('main');
 	for(i=0;i<articles.length;i++){
@@ -236,7 +236,7 @@ function filter_by_content(content_tag, zeroOne) {
 	        mainByCreator.appendChild(articles[i].cloneNode(true));
 	}
 	thisMain.remove();
-	body.appendChild(mainByCreator);
+	mainDiv.appendChild(mainByCreator);
 	if (zeroOne==0) {
 		creatorSelected = true;
 		previous_creator = content_tag;
@@ -252,7 +252,7 @@ function deselect_content_filter(subbtn) {
 		let original_main = mainTag.cloneNode(true);
 		let thisMain = document.getElementsByTagName('main')[0];
 		thisMain.remove();
-		body.appendChild(original_main);
+		mainDiv.appendChild(original_main);
 		sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
 		if (previous_creator!='') {
 			previous_creator.style.backgroundColor='';
@@ -267,7 +267,7 @@ function deselect_content_filter(subbtn) {
 		let original_main = mainTag.cloneNode(true);
 		let thisMain = document.getElementsByTagName('main')[0];
 		thisMain.remove();
-		body.appendChild(original_main);
+		mainDiv.appendChild(original_main);
 		sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
 		if (previous_length!='') {
 			previous_length.style.backgroundColor='';
@@ -311,7 +311,7 @@ function mobileNotSupported(){
     if(w < 375){
         bod.remove();
         newBod = document.createElement('body');
-        newBod.innerHTML = 'Mobile Version Of This Website Isn\'t Available As Of Now. Either Enable Desktop Version In Your Mobile Browser, Or Consider Switching To PC For Better Experience.';
+        newBod.innerHTML = 'Mobile Version Of This Website Isn\'t Available As Of Now. Please Consider Switching To PC For Better Experience.';
         newBod.style = "background-image: url(https://i.imgur.com/CC8vwXy.png);background-size: auto;background-color: #97d6f8;background-position-y: 35%;text-align: center;margin: 95% 10px;color: #1e6394;";
         bod.style.display = 'none';
         docHtml = document.getElementsByTagName('html')[0];
