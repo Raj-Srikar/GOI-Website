@@ -1,4 +1,4 @@
-var notReverse = true, creatorSelected = false, lengthSelected = false, getAlphaMain = true;
+var notReverse = true, isHalloween = true, creatorSelected = false, lengthSelected = false, getAlphaMain = true;
 mainTag = document.getElementsByTagName('main')[0];
 
 function embed(link) {
@@ -48,7 +48,21 @@ function fetchJSON() {
 				paraTag.appendChild(spanTag2);
 				newArticle.appendChild(divTag);
 				newArticle.appendChild(h2Tag);
+				if (data[i].halloween) {
+					newArticle.className = 'halloween-map';
+					newArticle.title = 'Halloween Map'
+					img1 = document.createElement('img');
+					img1.src="images/halloween/moonbats.png";
+					img1.className = "moonbats";
+					newArticle.appendChild(img1);
+				}
 				newArticle.appendChild(paraTag);
+				if (data[i].halloween) {
+					img2 = document.createElement('img');
+					img2.src="images/halloween/jacko.png";
+					img2.className = "jacko";
+					newArticle.appendChild(img2);
+				}
 				mainTag.appendChild(newArticle);
 			}
 			// body.appendChild(main);
@@ -57,7 +71,7 @@ function fetchJSON() {
 }
 
 function alphaSort() {
-	oldMain = document.getElementsByTagName('main')[0];
+	let oldMain = document.getElementsByTagName('main')[0];
 	mapNames = [];
 	anchs = oldMain.getElementsByTagName('a');
 	sort_btn = document.getElementById('alphaSort')
@@ -96,6 +110,33 @@ function alphaSort() {
 	mainDiv.appendChild(newMain)
 }
 
+function halloweenSort() {
+	let oldMain = document.getElementsByTagName('main')[0];
+	halloweenMaps = oldMain.getElementsByClassName('halloween-map');
+	let newMain = document.createElement('main');
+
+	if (isHalloween) {
+		for (var i = 0; i < halloweenMaps.length; i++) {
+			newMain.appendChild(halloweenMaps[i].cloneNode(true));
+		}
+		isHalloween = false;
+
+		spiderWebDiv = document.createElement('div');
+		spiderWebDiv.innerHTML = '<img src="images/halloween/web-top-left.png" style="top:0;left:0"><img src="images/halloween/web-bottom-left.png" style="bottom:0;left:0"><img src="images/halloween/web-bottom-right.png" style="bottom:0;right:0"><img src="images/halloween/web-top-right.png" style="top:0;right:0;width: 18%;">';
+		spiderWebDiv.setAttribute('id', 'spiderWebDiv');
+		document.getElementsByTagName('body')[0].appendChild(spiderWebDiv);
+	}
+	else{
+		newMain = mainTag;
+		isHalloween = true;
+		document.getElementById('spiderWebDiv').remove();
+	}
+
+
+	oldMain.remove();
+	mainDiv.appendChild(newMain)
+}
+
 spans = mainTag.getElementsByTagName('span');
 
 creators = []
@@ -103,7 +144,7 @@ lengths = []
 creators_lc = []
 lengths_lc = []
 
-function conent_list() {
+function content_list() {
 	for(i=0;i<spans.length/2;i++){
 	    creators.push(spans[i*2].innerHTML.trim())
 	}
@@ -321,7 +362,7 @@ function mobileNotSupported(){
 
 fetchJSON();
 setTimeout(function(){
-	conent_list();
+	content_list();
 	add_subMenu_content(creators,creators_lc,0);
 	add_subMenu_content(lengths,lengths_lc,1);
 	alphaSort();
