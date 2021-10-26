@@ -110,7 +110,11 @@ function alphaSort() {
 	mainDiv.appendChild(newMain)
 }
 
+deselect_filter_halloween = true;
 function halloweenSort() {
+	if (!deselect_filter_halloween) {
+		deselect_content_filter();
+	}
 	let oldMain = document.getElementsByTagName('main')[0];
 	halloweenMaps = oldMain.getElementsByClassName('halloween-map');
 	let newMain = document.createElement('main');
@@ -227,6 +231,7 @@ var previous_creator='', previous_length='';
 function filter_by_content(content_tag, zeroOne) {
 	sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
 	notReverse = false;
+	if (!isHalloween) {halloweenSort()}
 	let subs = document.getElementsByClassName('sub');
 	lengthParent = subs[1];
 	lengthParent.style.backgroundColor='';
@@ -247,14 +252,14 @@ function filter_by_content(content_tag, zeroOne) {
 		previous_length.onmouseleave = function(){};
 	}
 	content = content_tag.innerText;
+	creatorSub = content_tag.parentNode.parentNode;
+	lengthSub = content_tag.parentNode.parentNode;
 	if (zeroOne==0){
-		creatorSub = content_tag.parentNode.parentNode;
 		creatorSub.style.backgroundColor = '#b4ffc7';
 		creatorSub.onmouseenter = function (){this.style.backgroundColor = '#91eaa8';};
 		creatorSub.onmouseleave = function (){this.style.backgroundColor = '#b4ffc7';};
 	}
 	else if (zeroOne==1) {
-		lengthSub = content_tag.parentNode.parentNode;
 		lengthSub.style.backgroundColor = '#b4ffc7';
 		lengthSub.onmouseenter = function (){this.style.backgroundColor = '#91eaa8';};
 		lengthSub.onmouseleave = function (){this.style.backgroundColor = '#b4ffc7';};
@@ -286,9 +291,10 @@ function filter_by_content(content_tag, zeroOne) {
 		lengthSelected = true;
 		previous_length = content_tag;
 	}
+	deselect_filter_halloween = false;
 }
 
-function deselect_content_filter(subbtn) {
+function deselect_content_filter() {
 	if (creatorSelected) {
 		let original_main = mainTag.cloneNode(true);
 		let thisMain = document.getElementsByTagName('main')[0];
