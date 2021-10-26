@@ -110,22 +110,28 @@ function alphaSort() {
 	mainDiv.appendChild(newMain)
 }
 
-function apply_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton) {
+function apply_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, navATags) {
 	bodyTag.style = "background-image: linear-gradient(#00000033, #00000033), url(https://www.wallpapertip.com/wmimgs/67-676387_halloween-wallpapers-hd-3-halloween-night-wallpaper-hd.jpg);";
 	headerTag.style = "background-image: linear-gradient(to left, #00000055, #00000055), url(https://cdn.wallpapersafari.com/49/15/H0xLQG.jpg);background-position-y: 90%;box-shadow: 0px 5px 20px 5px rgb(255 94 0 / 30%);";
 	tagLine = "color: #e2ddd5;";
 	halloweenButton.style = "color:red;background-color: black;border: 2px solid red;box-shadow: 0px 0px 10px 5px #b94646;";
 	halloweenButton.onmouseenter = function(){halloweenButton.style.color='#ffe002';halloweenButton.style.boxShadow='orangered 0px 0px 10px 5px'};
 	halloweenButton.onmouseleave = function(){halloweenButton.style.color='red';halloweenButton.style.boxShadow='#b94646 0px 0px 10px 5px'};
+	for (var i = 0; i < navATags.length; i++) {
+		navATags[i].style = "background-image: url(images/halloween/scythe.png);background-size: 100%;"
+	}
 }
 
-function remove_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton) {
+function remove_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, navATags) {
 	bodyTag.style = "";
 	headerTag.style = "";
 	tagLine = "";
 	halloweenButton.style = "";
 	halloweenButton.onmouseenter = function(){};
 	halloweenButton.onmouseleave = function(){};
+	for (var i = 0; i < navATags.length; i++) {
+		navATags[i].style = "";
+	}
 }
 
 deselect_filter_halloween = true;
@@ -137,13 +143,14 @@ function halloweenSort() {
 	let headerTag = document.getElementsByTagName('header')[0];
 	let tagLine = headerTag.getElementsByTagName('p')[0];
 	let halloweenButton = document.getElementById('halloweenSort');
+	let navATags = headerTag.getElementsByTagName('a');
 
 	let oldMain = document.getElementsByTagName('main')[0];
 	halloweenMaps = oldMain.getElementsByClassName('halloween-map');
 	let newMain = document.createElement('main');
 
 	if (isHalloween) {
-		apply_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton);
+		apply_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, navATags);
 		for (var i = 0; i < halloweenMaps.length; i++) {
 			newMain.appendChild(halloweenMaps[i].cloneNode(true));
 		}
@@ -155,7 +162,7 @@ function halloweenSort() {
 		document.getElementsByTagName('body')[0].appendChild(spiderWebDiv);
 	}
 	else{
-		remove_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton);
+		remove_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, navATags);
 		newMain = mainTag;
 		isHalloween = true;
 		document.getElementById('spiderWebDiv').remove();
