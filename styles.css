@@ -129,15 +129,6 @@ body {
       background-color: red;
       color: white;
     }
-    /*#halloweenSort: hover{
-      color: orangered;
-      background-color: white;
-    }
-
-    #halloweenSort: active{
-      color: white;
-      background-color: red;
-    }*/
   
   /* Filters */
   
@@ -356,6 +347,7 @@ body {
   }
 
   .halloween-map>img{
+    user-select: none;
     transition: 0.5s;
   }
 
@@ -389,6 +381,7 @@ body {
   }
 
   body>div>img{
+    user-select: none;
     position: fixed;
     width: 35%;
     pointer-events: none;
