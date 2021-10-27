@@ -388,6 +388,23 @@ body {
     z-index: 2;
   }
 
+  #spider{
+    transition: 5s;
+    top: 12%;
+    right: 3.35%;
+    width: 5%;
+  }
+
+  #webthread{
+    background-color: white;
+    position: fixed;
+    top: 3%;
+    right: 5%;
+    width: 2px;
+    height: 13%;
+    transition:5s;
+  }
+
 
 /* WebPage Footer */
   footer{

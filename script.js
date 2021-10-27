@@ -134,6 +134,20 @@ function remove_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, na
 	}
 }
 
+function animate_spider_downward() {
+	spider = document.getElementById('spider');
+	spider.style.top = '52%';
+	webthread = document.getElementById('webthread');
+	webthread.style.height = '53%'
+}
+
+function animate_spider_upward() {
+	spider = document.getElementById('spider');
+	spider.style.top = '12%';
+	webthread = document.getElementById('webthread');
+	webthread.style.height = '13%'
+}
+
 deselect_filter_halloween = true;
 function halloweenSort() {
 	if (!deselect_filter_halloween) {
@@ -157,14 +171,26 @@ function halloweenSort() {
 		isHalloween = false;
 
 		spiderWebDiv = document.createElement('div');
-		spiderWebDiv.innerHTML = '<img src="images/halloween/web-top-left.png" style="top:0;left:0"><img src="images/halloween/web-bottom-left.png" style="bottom:0;left:0"><img src="images/halloween/web-bottom-right.png" style="bottom:0;right:0"><img src="images/halloween/web-top-right.png" style="top:0;right:0;width: 18%;">';
+		spiderWebDiv.innerHTML = '<img src="images/halloween/web-top-left.png" style="top:0;left:0"><img src="images/halloween/web-bottom-left.png" style="bottom:0;left:0"><img src="images/halloween/web-bottom-right.png" style="bottom:0;right:0"><img src="images/halloween/top-right-web.png" style="top:0;right:0;width: 18%;"><img src="images/halloween/spida.png" id="spider"><span id="webthread"></span>';
 		spiderWebDiv.setAttribute('id', 'spiderWebDiv');
 		document.getElementsByTagName('body')[0].appendChild(spiderWebDiv);
+		spiderAbove = true;
+		spiderInterval = setInterval(function() {
+				if (spiderAbove){
+					animate_spider_downward();
+					spiderAbove = false;
+				}
+				else{
+					animate_spider_upward();
+					spiderAbove = true;
+				}
+			}, 15000);
 	}
 	else{
 		remove_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, navATags);
 		newMain = mainTag;
 		isHalloween = true;
+		clearInterval(spiderInterval);
 		document.getElementById('spiderWebDiv').remove();
 	}
 
