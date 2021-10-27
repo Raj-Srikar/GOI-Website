@@ -81,12 +81,13 @@ body {
   /* Alphabetic Sorting */
 
     #alphaSort{
+      display: inline-block;
       cursor: pointer;
       color: white;
       font-size: 150%;
       font-weight: bold;
       background-color: #195cc1;
-      margin: 20px 10px 0px 30px;
+      margin: 20px 10px;
       border-radius: 5px;
       padding: 7px 15px 6px;
       transition: 0.2s;
@@ -96,7 +97,6 @@ body {
       transition: 0.2s;
       color: #195cc1;
       background-color: white;
-      transition: 0s;
     }
     
     #alphaSort:active{
@@ -107,21 +107,21 @@ body {
   /* Halloween Sorting */
 
     #halloweenSort{
+      display: inline-block;
       cursor: pointer;
       color: white;
       font-size: 150%;
       font-weight: bold;
       background-color: orangered;
-      margin: 20px 10px 0px 7px;
+      margin: 20px 10px;
       border-radius: 5px;
-      padding: 7px 11px 6px 16px;
+      padding: 7px 16px 6px;
       transition: 0.2s;
     }
     #halloweenSort:hover{
       transition: 0.2s;
       color: orangered;
       background-color: white;
-      transition: 0s;
     }
     
     #halloweenSort:active{

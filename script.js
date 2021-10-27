@@ -120,6 +120,11 @@ function apply_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, nav
 	for (var i = 0; i < navATags.length; i++) {
 		navATags[i].style = "background-image: url(images/halloween/scythe.png);background-size: 100%;"
 	}
+	document.getElementById('filterBy').style = 'display:none';
+	let alphaSortTag = document.getElementById('alphaSort');
+	alphaSortTag.style = 'box-shadow: rgb(146 185 70) 0px 0px 10px 2px;color: limegreen;border: 1px solid limegreen; background-color:black';
+	alphaSortTag.onmouseenter = function(){this.style.boxShadow = '#fbff00 0px 0px 10px 2px';this.style.color = '#ccff00';this.style.border = '1px solid yellowgreen';};
+	alphaSortTag.onmouseleave = function(){this.style.boxShadow = 'rgb(146 185 70) 0px 0px 10px 2px';this.style.color = 'limegreen';this.style.border = '1px solid limegreen';};
 }
 
 function remove_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, navATags) {
@@ -132,6 +137,11 @@ function remove_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, na
 	for (var i = 0; i < navATags.length; i++) {
 		navATags[i].style = "";
 	}
+	document.getElementById('filterBy').style = '';
+	let alphaSortTag = document.getElementById('alphaSort');
+	alphaSortTag.style = '';
+	alphaSortTag.onmouseenter = function(){};
+	alphaSortTag.onmouseleave = function(){};
 }
 
 function animate_spider_downward() {
@@ -184,7 +194,7 @@ function halloweenSort() {
 					animate_spider_upward();
 					spiderAbove = true;
 				}
-			}, 15000);
+			}, 10000);
 	}
 	else{
 		remove_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, navATags);
@@ -289,7 +299,6 @@ var previous_creator='', previous_length='';
 function filter_by_content(content_tag, zeroOne) {
 	sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
 	notReverse = false;
-	if (!isHalloween) {halloweenSort()}
 	let subs = document.getElementsByClassName('sub');
 	lengthParent = subs[1];
 	lengthParent.style.backgroundColor='';
