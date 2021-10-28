@@ -67,6 +67,8 @@ def ok_addNewMap():
     else:
         embedyt = embed(ytlink)
 
+    if ytlink=='' and halloween_var.get(): embedyt = 'images/halloween/spookyNoShowcase.png'
+
     if validateInfo:
         newMapJSON = {
             'map': map_name,
@@ -113,6 +115,8 @@ def ok_mapNameUpdate():
                         embedyt = 'images/noVideo.png'
                     else:
                         embedyt = embed(ytlink)
+
+                    if ytlink=='' and halloween_var.get(): embedyt = 'images/halloween/spookyNoShowcase.png'
 
                     if validateInfo:
                         singleMap['map'] = map_name
