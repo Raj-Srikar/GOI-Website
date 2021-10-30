@@ -486,7 +486,7 @@
     {
         "map": "Minecraft Halloween",
         "creator": "Hoppiters",
-        "length": "Unknown",
+        "length": "Medium",
         "video": "https://i.imgur.com/i9Prruh.png",
         "drive": "https://drive.google.com/drive/folders/1Ircq31j6okssh4PLxoLHiR1QLsQ1SHkF?usp=sharing",
         "halloween": true
@@ -494,7 +494,7 @@
     {
         "map": "Spoopy Map",
         "creator": "Logzilla",
-        "length": "Unknown",
+        "length": "Medium",
         "video": "images/halloween/spookyNoShowcase.png",
         "drive": "https://drive.google.com/file/d/1Hc4fjQSDHzRuRw4FLHTgcyL5fyWlL6CR/view?usp=sharing",
         "halloween": true
@@ -502,7 +502,7 @@
     {
         "map": "Trick Or Treat",
         "creator": "Nameless",
-        "length": "Unknown",
+        "length": "Medium",
         "video": "https://i.imgur.com/VZqsWd6.jpeg",
         "drive": "https://drive.google.com/drive/folders/1I6buKeNWTAn3C3RtqwmjBv9LWogVutAK",
         "halloween": true
@@ -510,7 +510,7 @@
     {
         "map": "Night of Misfits",
         "creator": "nasko222",
-        "length": "Unknown",
+        "length": "Medium",
         "video": "images/halloween/spookyNoShowcase.png",
         "drive": "https://drive.google.com/file/d/1wSG2Jf-FsNPc12fxFH-AljBN7pmfRnwu/view?usp=sharing",
         "halloween": true
@@ -518,9 +518,25 @@
     {
         "map": "Halloween",
         "creator": "Permutative",
-        "length": "Unknown",
+        "length": "Medium",
         "video": "https://i.imgur.com/egeKGL5.png",
         "drive": "https://drive.google.com/file/d/1lmueg22zkvZbuJ6xgvKFiHC0PIUmB1H1/view?usp=sharing",
+        "halloween": true
+    },
+    {
+        "map": "GOIBIPDFMATASFSR",
+        "creator": "Kactus Guy",
+        "length": "Medium",
+        "video": "https://i.imgur.com/O5BzMJr.png",
+        "drive": "https://drive.google.com/drive/folders/1kzo0XzxBquxOSvgZXi0X45WXYL78Nm6H?usp=sharing ",
+        "halloween": true
+    },
+    {
+        "map": "Spooky Flabby Bird",
+        "creator": "gaymer",
+        "length": "Medium",
+        "video": "images/halloween/spookyNoShowcase.png",
+        "drive": "https://drive.google.com/drive/u/0/folders/1C5y_V7xI8Hgxy8lDdsRuCpuqp4UEcQch",
         "halloween": true
     }
 ]
