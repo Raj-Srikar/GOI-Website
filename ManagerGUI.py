@@ -15,6 +15,7 @@ def clear_fields():
     ent_length.delete(0,tk.END)
     ent_map_name.delete(0,tk.END)
     ent_video.delete(0,tk.END)
+    halloween_var.set(False)
 
 def goto_home():
     clear_fields()
@@ -58,13 +59,15 @@ def ok_addNewMap():
     creator = ent_creator.get()
     length = ent_length.get()
     drive = ent_drive.get()
-    validateInfo = validateInfo and map and creator and length and drive
+    validateInfo = validateInfo and map_name and creator and length and drive
     ytlink = ent_video.get()
 
     if ytlink=='':
         embedyt = 'images/noVideo.png'
     else:
         embedyt = embed(ytlink)
+
+    if ytlink=='' and halloween_var.get(): embedyt = 'images/halloween/spookyNoShowcase.png'
 
     if validateInfo:
         newMapJSON = {
@@ -74,6 +77,8 @@ def ok_addNewMap():
             'video': embedyt,
             'drive': drive
         }
+
+        if halloween_var.get(): newMapJSON['halloween'] = True
 
         allMapJSON.append(newMapJSON)
 
@@ -96,6 +101,7 @@ def ok_mapNameUpdate():
                 ent_length.insert(0,singleMap['length'])
                 ent_drive.insert(0,singleMap['drive'])
                 ent_video.insert(0,singleMap['video'])
+                if singleMap.get('halloween'): halloween_var.set(True)
 
                 def ok_updateMapInfo():
                     validateInfo = True
@@ -103,12 +109,14 @@ def ok_mapNameUpdate():
                     creator = ent_creator.get()
                     length = ent_length.get()
                     drive = ent_drive.get()
-                    validateInfo = validateInfo and map and creator and length and drive
+                    validateInfo = validateInfo and map_name and creator and length and drive
                     ytlink = ent_video.get()
                     if ytlink=='':
                         embedyt = 'images/noVideo.png'
                     else:
                         embedyt = embed(ytlink)
+
+                    if ytlink=='' and halloween_var.get(): embedyt = 'images/halloween/spookyNoShowcase.png'
 
                     if validateInfo:
                         singleMap['map'] = map_name
@@ -116,6 +124,8 @@ def ok_mapNameUpdate():
                         singleMap['length'] = length
                         singleMap['drive'] = drive
                         singleMap['video'] = embedyt
+                        if singleMap.get('halloween'): singleMap.pop('halloween')
+                        if halloween_var.get(): singleMap['halloween'] = True
                         mb.showinfo('Updated a Map', f'Successfully Updated the Map, "{map_name}" in the JSON!')
                         goto_home()
                     else: mb.showerror('Invalid Map data', 'Please fill out all the required fields!')
@@ -219,6 +229,9 @@ lbl_video = tk.Label(frm_mapInfo, text='Video Showcase\t\t:',font=('Helevatica',
 lbl_video.grid(row=4,column=0,sticky='w',pady=10)
 ent_video = tk.Entry(frm_mapInfo,width=30,highlightbackground='grey',highlightthickness=1,font='Helevatica 11')
 ent_video.grid(row=4,column=1)
+halloween_var = tk.BooleanVar()
+chk_halloween = tk.Checkbutton(frm_mapInfo,text='Halloween Map',variable=halloween_var,onvalue=True,offvalue=False,font=('Helevatica',11))
+chk_halloween.grid(row=5,column=1,sticky='w',pady=10)
 frm_mapInfo.grid(pady=(0,15))
 
 frm_infoBtns = tk.Frame(frm_addMap)
