@@ -1,3 +1,7 @@
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: Kohinoor, Helvetica, sans-serif;
   background: linear-gradient(#00000055, #00000055), url(images/GoiDio.png);
@@ -6,6 +10,30 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   padding: 5px;
+}
+
+#stt{
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  font-size: 25px;
+  border: none;
+  outline: none;
+  background-color: #ff0000;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 50%;
+}
+
+#stt:hover{
+  background-color: #ff3a3a;
+}
+
+#stt:active{
+  background-color: #b80000;
 }
 
 /* Webpage Header */

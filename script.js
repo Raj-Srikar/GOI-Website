@@ -202,6 +202,8 @@ function halloweenSort() {
 		isHalloween = true;
 		clearInterval(spiderInterval);
 		document.getElementById('spiderWebDiv').remove();
+		notReverse = false;
+		document.getElementById('alphaSort').innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
 	}
 
 
@@ -422,7 +424,7 @@ function modifyDisplay(sub) {
 function mobileNotSupported(){
     w = screen.width;
     let bod = document.getElementsByTagName('body')[0];
-    if(w < 375){
+    if(w < 400){
         bod.remove();
         newBod = document.createElement('body');
         newBod.innerHTML = 'Mobile Version Of This Website Isn\'t Available As Of Now. Please Consider Switching To PC For Better Experience.';
@@ -432,6 +434,18 @@ function mobileNotSupported(){
         docHtml.appendChild(newBod);
     }
 }
+
+function scrollFunction() {
+	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+		scrollToTop.style.display = "block";
+	} 
+	else {
+		scrollToTop.style.display = "none";
+	}
+}
+
+var scrollToTop = document.getElementById("stt");
+window.onscroll = function() {scrollFunction()};
 
 fetchJSON();
 setTimeout(function(){
