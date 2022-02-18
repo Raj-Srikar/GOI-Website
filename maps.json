@@ -477,7 +477,8 @@
         "drive": "https://drive.google.com/file/d/1IPZQ1gLARLJwFUjQg4fG34dAXyFnSNbt/view?usp=sharing"
     },
     {
-        "map": "Yummz": "Permutative",
+        "map": "Yummz",
+        "creator": "Permutative",
         "length": "XL",
         "video": "images/noVideo.png",
         "drive": "https://drive.google.com/drive/folders/1FTC7Xy8zC5Gym_-2K-bJMvvroTeDVjlY"
