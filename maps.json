@@ -16,7 +16,7 @@
     {
         "map": "Slippery Slopes",
         "creator": "Bobingstern",
-        "length": "Short-Medium",
+        "length": "Short/Medium",
         "video": "https://www.youtube.com/watch?v=eic6X_HDKWQ",
         "drive": "https://drive.google.com/drive/folders/1z8G3--LJOMxjlvIj34KIimEVvLymzi24?usp=sharing"
     },
@@ -37,7 +37,7 @@
     {
         "map": "Mario",
         "creator": "HighChair",
-        "length": "Short-Medium",
+        "length": "Short/Medium",
         "video": "https://youtube.com/watch?v=BV2dpPJqXjQ",
         "drive": "https://drive.google.com/drive/folders/12J5Y3oJSKp1_2NPYXDjIDJAoGGgWYeiR"
     },
@@ -53,7 +53,7 @@
         "creator": "Permutative",
         "length": "Medium",
         "video": "https://youtube.com/watch?v=JoiOItW-dtk",
-        "drive": "https://drive.google.com/file/d/1KvrwfW6VttJB30VlNR1XsjaY6-IZV5M8/view?usp=drivesdk"
+        "drive": "https://drive.google.com/drive/folders/1gESJWqdqqB4QOfQvdcJLLveBWCP6UGne"
     },
     {
         "map": "The Road",
@@ -67,10 +67,10 @@
         "creator": "Permutative",
         "length": "Medium",
         "video": "https://youtube.com/watch?v=AfbKeNrKLvE",
-        "drive": "https://drive.google.com/file/d/1HfsTPKBDwBLr3zAapWYNN7XlpDDvmP27/view?usp=sharing"
+        "drive": "https://drive.google.com/drive/folders/1mwf7wVA0eDqz8vtXkJ0afcAdTDDEPlTx"
     },
     {
-        "map": "ok",
+        "map": "OkayLand",
         "creator": "clody",
         "length": "Medium",
         "video": "https://youtube.com/watch?v=8aNX2PocdqM",
@@ -121,7 +121,7 @@
     {
         "map": "Memeing Over It",
         "creator": "masterCircle",
-        "length": "ok.",
+        "length": "Medium",
         "video": "https://youtube.com/watch?v=xXCTXD_H8d8?start=1152",
         "drive": "https://drive.google.com/drive/folders/1mS9FYjMfXus9Vl8wE27lGCHAzUxcFjvD?usp=sharing"
     },
@@ -200,7 +200,7 @@
         "creator": "Permutative",
         "length": "Long",
         "video": "https://youtube.com/watch?v=TwgXnHpfqMY",
-        "drive": "https://drive.google.com/file/d/1TOAEk9AL7AQ3UFf3C17SBFHMXkec0dg1/view?usp=sharing"
+        "drive": "https://drive.google.com/drive/folders/1r-woDa6eWF7cTraVxcgKhXiXn7WDmLak"
     },
     {
         "map": "The Trees",
@@ -212,7 +212,7 @@
     {
         "map": "Boxy Boxes",
         "creator": "Nathan Yoshi",
-        "length": "Long",
+        "length": "Medium",
         "video": "https://youtube.com/watch?v=xXCTXD_H8d8",
         "drive": "https://drive.google.com/drive/folders/1OGGeFyiN2G7Ukk7k3Jzn1Th0-FpmX-rY?usp=sharing"
     },
@@ -228,11 +228,11 @@
         "creator": "DRS (Raj Srikar)",
         "length": "Long",
         "video": "https://www.youtube.com/watch?v=w7nJG4v2_sA",
-        "drive": "https://drive.google.com/drive/folders/1tiuhxJNG_FSKFpGqmrXPF5ZiA8SDKTG?usp=sharing"
+        "drive": "https://drive.google.com/drive/folders/1tiuhxJNG_FSKFH4GqmrXPF5ZiA8SDKTG"
     },
     {
         "map": "I tried to make a map",
-        "creator": "HippityHop/Hoppiters",
+        "creator": "Hoppiters",
         "length": "Medium",
         "video": "https://youtube.com/watch?v=uLIUE-YSDBA",
         "drive": "https://drive.google.com/drive/folders/1xykxY3bDoTUpDXMyVeENDRLhQkA-hasT"
@@ -260,14 +260,14 @@
     },
     {
         "map": "Reversed Segments",
-        "creator": "Sparsh\u00f0\u0178\u201d\u00a8",
+        "creator": "Sparsh",
         "length": "Medium",
         "video": "https://youtube.com/watch?v=emraeO1aXZI",
         "drive": "https://drive.google.com/drive/folders/1H02ed6HDItDephc2o-WcD01ElLzTpinV?usp=sharing"
     },
     {
-        "map": "goimap",
-        "creator": "gaymer",
+        "map": "Hell",
+        "creator": "Woahbust",
         "length": "Long",
         "video": "https://www.youtube.com/watch?v=lgGismFKvt0",
         "drive": "https://drive.google.com/drive/folders/1KJ3p2xbYgeqyRpSSjt9882MzD8DMBZSu"
@@ -294,7 +294,7 @@
         "drive": "https://drive.google.com/file/d/1mXWXenzpikWm3YKSQN4ojmVjRF0t7ECZ/view"
     },
     {
-        "map": "policity",
+        "map": "PolyCity",
         "creator": "Vinson",
         "length": "Medium",
         "video": "images/noVideo.png",
@@ -316,7 +316,7 @@
     },
     {
         "map": "Nasko's World",
-        "creator": "nasko222 & 6to6UwU",
+        "creator": "Nasko222 & 6to6UwU",
         "length": "Medium",
         "video": "images/noVideo.png",
         "drive": "https://drive.google.com/file/d/1hF7qBCCEpxfUb7ympUB8H_JoicTatgP_/view?usp=sharing"
@@ -333,7 +333,7 @@
         "creator": "Permutative",
         "length": "Long",
         "video": "https://youtu.be/LX0dmmEswwk",
-        "drive": "https://drive.google.com/file/d/1_16L01uaG5-YTOIv2h3eVby8KEmZI84B/view?usp=sharing"
+        "drive": "https://drive.google.com/drive/folders/1JfvJDAVxrZG8TKejjC7o0UhHtBJKI1O0"
     },
     {
         "map": "Undercave",
@@ -350,23 +350,23 @@
         "drive": "https://drive.google.com/file/d/1SA83sjmpu4DBa-lsdorhj7_w6TgmuvoU/view"
     },
     {
-        "map": "flabby bird",
-        "creator": "gaymer",
+        "map": "Flappy Bird",
+        "creator": "Woahbust",
         "length": "Medium",
         "video": "https://youtu.be/Dewq2wNNpvA",
         "drive": "https://drive.google.com/folderview?id=1gct9RmmLIRsquzlMu_2s0I4R7PFDMpqW"
     },
     {
         "map": "Desert Bus",
-        "creator": "gaymer",
-        "length": "Medium",
+        "creator": "Woahbust",
+        "length": "Long",
         "video": "images/noVideo.png",
         "drive": "https://drive.google.com/drive/folders/1DtNmYTWpoE_FLa_XhS8VIfxYqLTjOOmG?usp=sharing"
     },
     {
-        "map": "the moon",
-        "creator": "gaymer",
-        "length": "Medium",
+        "map": "The Moon",
+        "creator": "Woahbust",
+        "length": "Short",
         "video": "images/noVideo.png",
         "drive": "https://drive.google.com/drive/folders/1tvvw9EN0OuQ4tO4dt6HNyjOo8hfAJqNR?usp=sharing "
     },
@@ -415,7 +415,7 @@
     },
     {
         "map": "Sexy Hiking",
-        "creator": "gaymer",
+        "creator": "Woahbust",
         "length": "Medium",
         "video": "images/noVideo.png",
         "drive": "https://drive.google.com/drive/folders/1RQYpUF33p55DOY16vCwOdWBMAjo-XK0_?usp=sharing"
@@ -457,14 +457,14 @@
     },
     {
         "map": "sky bus",
-        "creator": "gaymer",
+        "creator": "Woahbust",
         "length": "Medium",
         "video": "images/noVideo.png",
         "drive": "https://drive.google.com/drive/folders/1VSgTRQeycdtKmYKCe7iUuARlYUZqGeaN?usp=sharing"
     },
     {
         "map": "terraria",
-        "creator": "kactus guy",
+        "creator": "Kactus Guy",
         "length": "Medium",
         "video": "images/noVideo.png",
         "drive": "https://drive.google.com/file/d/1VqX3Z2a0Mn00fmsKSJ5MaiCTJunqH0sa/view?usp=sharing"
@@ -474,7 +474,13 @@
         "creator": "Permutative",
         "length": "Short",
         "video": "images/noVideo.png",
-        "drive": "https://drive.google.com/file/d/11kSj0Bs7mkz_2FtI5VxQvvX2VUHomfYo/view?usp=sharing"
+        "drive": "https://drive.google.com/file/d/1IPZQ1gLARLJwFUjQg4fG34dAXyFnSNbt/view?usp=sharing"
+    },
+    {
+        "map": "Yummz": "Permutative",
+        "length": "XL",
+        "video": "images/noVideo.png",
+        "drive": "https://drive.google.com/drive/folders/1FTC7Xy8zC5Gym_-2K-bJMvvroTeDVjlY"
     },
     {
         "map": "Minecraft Halloween",
@@ -502,7 +508,7 @@
     },
     {
         "map": "Night of Misfits",
-        "creator": "nasko222",
+        "creator": "Nasko222",
         "length": "Medium",
         "video": "images/halloween/spookyNoShowcase.png",
         "drive": "https://drive.google.com/file/d/1wSG2Jf-FsNPc12fxFH-AljBN7pmfRnwu/view?usp=sharing",
@@ -513,7 +519,7 @@
         "creator": "Permutative",
         "length": "Medium",
         "video": "https://i.imgur.com/egeKGL5.png",
-        "drive": "https://drive.google.com/file/d/1lmueg22zkvZbuJ6xgvKFiHC0PIUmB1H1/view?usp=sharing",
+        "drive": "https://drive.google.com/drive/folders/14JrjMFHq_f5BYRyhBto8piVB8VKCK3GK?usp=sharing",
         "halloween": true
     },
     {
@@ -525,8 +531,8 @@
         "halloween": true
     },
     {
-        "map": "Spooky Flabby Bird",
-        "creator": "gaymer",
+        "map": "Spooky Flappy Bird",
+        "creator": "Woahbust",
         "length": "Medium",
         "video": "images/halloween/spookyNoShowcase.png",
         "drive": "https://drive.google.com/drive/u/0/folders/1C5y_V7xI8Hgxy8lDdsRuCpuqp4UEcQch",
@@ -535,13 +541,13 @@
     {
         "map": "mienDEMO",
         "creator": "Adam",
-        "length": "medium",
+        "length": "Medium",
         "video": "images/noVideo.png",
         "drive": "https://drive.google.com/drive/folders/18CAQKmxJXJE1vA0DfVj4GougHzkBa1q8"
     },
     {
         "map": "Diversity",
-        "creator": "Hoppiters + Gaymer",
+        "creator": "Hoppiters & Woahbust",
         "length": "Long",
         "video": "images/noVideo.png",
         "drive": "https://drive.google.com/drive/u/2/folders/1p1gFjIv39jonvRDxIqKrtb5LufB2L2PG"
@@ -565,21 +571,28 @@
         "creator": "Permutative",
         "length": "Short",
         "video": "images/noVideo.png",
-        "drive": "https://drive.google.com/file/d/1lA2rnUWc3bkb2zHbMB50fKAUdKcQ7yM9/view?usp=sharing"
+        "drive": "https://drive.google.com/drive/folders/1ocRou_7ZIsNZ1D_t6Z2mAwWsErvikbW9?usp=sharing"
     },
     {
         "map": "Stages",
         "creator": "Zantax",
         "length": "Medium",
         "video": "images/noVideo.png",
-        "drive": "https://drive.google.com/drive/folders/1dZJZd_N-2jSJcv4-2nHzUa6S0QZfsquV\n"
+        "drive": "https://drive.google.com/drive/folders/1dZJZd_N-2jSJcv4-2nHzUa6S0QZfsquV"
     },
     {
-        "map": "Crasy Adventure",
+        "map": "Crazy Adventure",
         "creator": "Shimuf",
         "length": "Medium",
         "video": "images/noVideo.png",
         "drive": "https://drive.google.com/drive/folders/1wX6HZf5H77ZRga1Ei2AkCyEm16ls8pJq?usp=sharing"
+    },
+    {
+        "map": "Sonic",
+        "creator": "Woahbust",
+        "length": "Short",
+        "video": "https://youtu.be/FxHm1Qetkyg",
+        "drive": "https://drive.google.com/drive/folders/146p4gRbiMgyYRmbCFFNwJKwE-YGCXHW0?usp=sharing"
     },
     {
         "map": "Goi Google Images",
