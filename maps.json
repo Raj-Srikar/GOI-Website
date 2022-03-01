@@ -7,6 +7,20 @@
         "drive": "https://drive.google.com/drive/folders/1s9lZfmoqCfwJeg1BOiTXx6U4LgaTs7Py"
     },
     {
+        "map": "Scrambled GOI",
+        "creator": "Codyumm",
+        "length": "Medium",
+        "video": "https://youtu.be/i68_FO51JJE",
+        "drive": "https://drive.google.com/drive/folders/12wwmIyNskm5E-Cb922YOhnyZNyhyFQ_I"
+    },
+    {
+        "map": "Cover Art Map",
+        "creator": "Codyumm",
+        "length": "Medium",
+        "video": "https://youtu.be/rCFWfItZKx8",
+        "drive": "https://drive.google.com/drive/folders/1pccJXXG7rqGiB9_SMhnzJNDFBBi8Qw6S"
+    },
+    {
         "map": "CliffJumper",
         "creator": "Bobingstern",
         "length": "Long",
@@ -203,6 +217,13 @@
         "drive": "https://drive.google.com/drive/folders/1r-woDa6eWF7cTraVxcgKhXiXn7WDmLak"
     },
     {
+        "map": "Get Up",
+        "creator": "A Turtle",
+        "length": "Long",
+        "video": "images/noVideo.png",
+        "drive": "https://drive.google.com/drive/folders/1prZHAMHLcGVtJNERw8abf-MHGlGn7-ZK"
+    },
+    {
         "map": "The Trees",
         "creator": "Happyfied",
         "length": "Long",
@@ -344,7 +365,7 @@
     },
     {
         "map": "SummerCity",
-        "creator": "nasko222 & 6to6UwU",
+        "creator": "Nasko222 & 6to6UwU",
         "length": "Medium",
         "video": "https://youtu.be/NKqK9qFk5lY",
         "drive": "https://drive.google.com/file/d/1SA83sjmpu4DBa-lsdorhj7_w6TgmuvoU/view"
@@ -527,23 +548,50 @@
         "creator": "Kactus Guy",
         "length": "Medium",
         "video": "https://i.imgur.com/O5BzMJr.png",
-        "drive": "https://drive.google.com/drive/folders/1kzo0XzxBquxOSvgZXi0X45WXYL78Nm6H?usp=sharing ",
+        "drive": "https://drive.google.com/drive/folders/1kzo0XzxBquxOSvgZXi0X45WXYL78Nm6H?usp=sharing",
         "halloween": true
     },
     {
-        "map": "Spooky Flappy Bird",
-        "creator": "Woahbust",
-        "length": "Medium",
-        "video": "images/halloween/spookyNoShowcase.png",
-        "drive": "https://drive.google.com/drive/u/0/folders/1C5y_V7xI8Hgxy8lDdsRuCpuqp4UEcQch",
-        "halloween": true
-    },
-    {
-        "map": "mienDEMO",
-        "creator": "Adam",
+        "map": "Murdisto",
+        "creator": "Anurag",
         "length": "Medium",
         "video": "images/noVideo.png",
+        "drive": "https://drive.google.com/drive/folders/1MoVZGQbY-kAR7g3ojHISZVj0DZSJjugv",
+    },
+    {
+        "map": "LowPolyPogChamp",
+        "creator": "AxolotlAnarchist",
+        "length": "Medium",
+        "video": "https://youtu.be/cj_lmY7Zt9w?t=343",
+        "drive": "https://drive.google.com/drive/folders/1qyNSwWDKoVfm0u0kwtiaVN-CjtZvmqIv",
+    },
+    {
+        "map": "Squares",
+        "creator": "AxolotlAnarchist",
+        "length": "Medium",
+        "video": "https://youtu.be/SnvZhuSt3hs",
+        "drive": "https://drive.google.com/drive/folders/1RG_tMzbWuOUNAc405uhOD08NmXXzawEA",
+    },
+    {
+        "map": "Mine",
+        "creator": "Adam",
+        "length": "Medium",
+        "video": "https://youtu.be/vcEUC6whe9I?t=788",
         "drive": "https://drive.google.com/drive/folders/18CAQKmxJXJE1vA0DfVj4GougHzkBa1q8"
+    },
+	{
+        "map": "Oil Rig Rampage",
+        "creator": "Adam",
+        "length": "Medium",
+        "video": "https://youtu.be/c3n71mUt6Ac?t=775",
+        "drive": "https://drive.google.com/drive/folders/1xqRJyjhtZbA11PFxqBICcXJIw-o4EYZb"
+    },
+    {
+        "map": "Jungle",
+        "creator": "Adam",
+        "length": "Medium",
+        "video": "https://youtu.be/qxshejFq2NA?t=419",
+        "drive": "https://drive.google.com/drive/folders/1v0ULFItvsr8azxxM4ogsYr6MaIuX_BGV"
     },
     {
         "map": "Diversity",
@@ -556,7 +604,7 @@
         "map": "Radio Tower",
         "creator": "Adam",
         "length": "Medium",
-        "video": "images/noVideo.png",
+        "video": "https://youtu.be/vcEUC6whe9I?t=977",
         "drive": "https://drive.google.com/drive/folders/1LuiLIedtYZ24eiRzAHGYWByX1h1u8iY1?usp=sharing "
     },
     {
@@ -595,8 +643,36 @@
         "drive": "https://drive.google.com/drive/folders/146p4gRbiMgyYRmbCFFNwJKwE-YGCXHW0?usp=sharing"
     },
     {
+        "map": "The Other Way",
+        "creator": "Woahbust",
+        "length": "Medium",
+        "video": "https://youtu.be/2kxznk182Sw?t=1013",
+        "drive": "https://drive.google.com/drive/folders/1FtzOSjEXbUJ6Q5-edAs0SsGGxR70FVmy"
+    },
+    {
+        "map": "Christmas Adventure",
+        "creator": "Adam",
+        "length": "Medium",
+        "video": "https://youtu.be/c3n71mUt6Ac?t=28",
+        "drive": "https://drive.google.com/drive/folders/1cX9OxS28kiwMitFQ4jz_ENGMIkFPtgI2"
+    },
+    {
+        "map": "Monumental Migration",
+        "creator": "Adam",
+        "length": "Long",
+        "video": "images/noVideo.png",
+        "drive": "https://drive.google.com/drive/folders/1GjiSlBzFmIXENacXkeB4jVtTcu_DR6Fj"
+    },
+    {
+        "map": "Crystal Hell",
+        "creator": "Adam",
+        "length": "Long",
+        "video": "images/noVideo.png",
+        "drive": "https://drive.google.com/drive/folders/1-PWxOfUhF8ZvSvCzalCpZkoE9bn0XCty"
+    },
+    { 
         "map": "Goi Google Images",
-        "creator": "Nakso222",
+        "creator": "Nasko222",
         "length": "Medium",
         "video": "images/noVideo.png",
         "drive": "https://drive.google.com/file/d/1cgXi8CYRn1pICyc5cr_hMxrpoVKrrAwG/view?usp=sharing"
