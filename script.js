@@ -12,7 +12,7 @@ function embed(link) {
 }
 
 function fetchJSON() {
-	fetch('maps.json')
+	fetch('https://opensheet.elk.sh/11bmvaGVkJtoERDa9Caobigt3s7EsLEpEFqaVB2Gb2Xk/map_data')
 	.then(response=>response.json())
 	.then(data=>{
 			// body = document.getElementsByTagName('body')[0];
@@ -30,17 +30,17 @@ function fetchJSON() {
 				brTag = document.createElement('br');
 				boldTag2 = document.createElement('b');
 				spanTag2 = document.createElement('span');
-				embedTag.setAttribute('src',embed(data[i].video));
+				data[i]["Video"] ? embedTag.setAttribute('src',embed(data[i]["Video"])) : embedTag.setAttribute('src',embed("images/noVideo.png"));
 				divTag.appendChild(embedTag);
-				h2Tag.setAttribute('title','Download '+data[i].map);
-				anchTag.setAttribute('href',data[i].drive);
+				h2Tag.setAttribute('title','Download '+data[i]["Map Name"]);
+				anchTag.setAttribute('href',data[i]["Download"]);
 				anchTag.setAttribute('target','_blank');
-				anchTag.innerHTML=data[i].map;
+				anchTag.innerHTML=data[i]["Map Name"];
 				h2Tag.appendChild(anchTag);
 				boldTag1.innerHTML='Creator:';
-				spanTag1.innerHTML=data[i].creator;
+				spanTag1.innerHTML=data[i]["Author"];
 				boldTag2.innerHTML='Length:';
-				spanTag2.innerHTML=data[i].length;
+				spanTag2.innerHTML=data[i]["Length"] ? data[i]["Length"] : "Not Mentioned";
 				paraTag.appendChild(boldTag1);
 				paraTag.appendChild(spanTag1);
 				paraTag.appendChild(brTag);
