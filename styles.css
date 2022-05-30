@@ -105,6 +105,12 @@ body {
     padding-left: 10px;
   }
 
+  #views{
+    height: 83px;
+    user-select: none;
+    margin-left: 20px;
+  }
+
 
 /* Sorting and Filtering */
   
@@ -454,6 +460,129 @@ body {
     font-family: monospace;
     font-size: 20px;
     background: #00000088;
+  }
+  #contr{
+    font-size: 17px;
+  }
+
+
+/* For Mobile Screens */
+  @media only screen and (max-width: 500px){
+    body{
+      padding: 0;
+    }
+    header{
+      min-width: 0;
+      min-height: 0;
+      padding: 25px 0 15px;
+      background: linear-gradient(to left, #0000005c, #00000011), url(images/poster.jpg);
+      background-size: 335%;
+      background-position: 928px;
+      margin: -5px;
+    }
+    h1{
+      font-size: 300%;
+    }
+    header>p{
+      font-size: 120%;
+      margin: auto;
+      margin-top: 5px;
+      width: 60%;
+    }
+    nav{
+      margin-top: 15px;
+    }
+    nav>a{
+      /*display: none;*/
+      width: 30%;
+      margin: 0 2%;
+      padding: 15px;
+      font-size: 10px;
+      background-size: 95%;
+    }
+    nav>a>span{
+      padding-left: 5px;
+    }
+    nav>a:hover, nav>a:focus{
+      width: 30%;
+      padding-left: 15px;
+      font-size: 10px;
+    }
+
+    #views{
+      margin-left: 0;
+    }
+    #views>span,#views>div{
+      font-size: 120%;
+      margin: 20px 5px;
+      padding: 7px 13px 6px;
+    }
+    #alphaSort{
+      background-color: #0066ff;
+    }
+    .dropdown{
+      background-color: #0066ff;
+    }
+    .dropdown:hover{
+      background-color: #1c76fc;
+    }
+    .dropdown-content{
+      font-size: 50%;
+      margin-left: -13px;
+      margin-top: 6px;
+    }
+    .dropdown-content>div{
+      padding: 7px 10px;
+    }
+    .sub-menu{
+      height: 165px;
+      font-size: 95%;
+      margin-top: -21px;
+      margin-left: 95px;
+    }
+    .sub-menu>div{
+      padding: 8px 14px;
+    }
+
+    article{
+      margin: 0px 10px;
+      padding: 0;
+      width: 83%;
+    }
+    article>div>iframe{
+      height: 175px;
+    }
+    article>div>img{
+      height: 175px;
+      width: 80%;
+    }
+    article>h2>a{
+      font-size: 120%;
+      margin: 10px;
+      margin-bottom: 5px;
+    }
+    article:hover>h2>a{
+      font-size: 120%;
+      margin: 21px;
+      margin-bottom: 15px;
+    }
+    article>p{
+      font-size: 90%;
+      margin-top: -5px;
+    }
+    #stt{
+      font-size: 17px;
+      bottom: 10px;
+      right: 10px;
+      padding: 10px 17px;
+    }
+    footer{
+      font-size: 15px;
+      margin: 0 -8px -8px;
+    }
+    #contr{
+      font-size: 10px;
+    }
   }
 
 

@@ -456,4 +456,3 @@ setTimeout(function(){
 	add_subMenu_content(lengths,lengths_lc,1);
 	alphaSort();
 }, 1000);
-mobileNotSupported()
