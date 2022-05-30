@@ -31,6 +31,7 @@ function fetchJSON() {
 				boldTag2 = document.createElement('b');
 				spanTag2 = document.createElement('span');
 				data[i]["Video"] ? embedTag.setAttribute('src',embed(data[i]["Video"])) : embedTag.setAttribute('src',embed("images/noVideo.png"));
+				embedTag.setAttribute('loading','lazy');
 				divTag.appendChild(embedTag);
 				h2Tag.setAttribute('title','Download '+data[i]["Map Name"]);
 				anchTag.setAttribute('href',data[i]["Download"]);
