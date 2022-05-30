@@ -21,7 +21,7 @@ function fetchJSON() {
 			for (var i = 0; i < data.length; i++) {
 				newArticle = document.createElement('article');
 				divTag = document.createElement('div');
-				embedTag = document.createElement('embed');
+				data[i]["Video"] ? ifrTag = document.createElement('iframe'):imgTag = document.createElement('img');
 				h2Tag = document.createElement('h2');
 				anchTag = document.createElement('a');
 				paraTag = document.createElement('p');
@@ -30,9 +30,10 @@ function fetchJSON() {
 				brTag = document.createElement('br');
 				boldTag2 = document.createElement('b');
 				spanTag2 = document.createElement('span');
-				data[i]["Video"] ? embedTag.setAttribute('src',embed(data[i]["Video"])) : embedTag.setAttribute('src',embed("images/noVideo.png"));
-				embedTag.setAttribute('loading','lazy');
-				divTag.appendChild(embedTag);
+				data[i]["Video"] ? ifrTag.setAttribute('src',embed(data[i]["Video"])) : imgTag.setAttribute('src',"images/noVideo.png");
+				ifrTag.setAttribute('srcdoc','<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href='+ifrTag.src+'><img src=https://img.youtube.com/vi/'+ifrTag.src.substr(ifrTag.src.indexOf('embed/')+6,11)+'/hqdefault.jpg><span>▶</span></a>')
+				ifrTag.setAttribute('loading','lazy');
+				data[i]["Video"] ? divTag.appendChild(ifrTag) : divTag.appendChild(imgTag);
 				h2Tag.setAttribute('title','Download '+data[i]["Map Name"]);
 				anchTag.setAttribute('href',data[i]["Download"]);
 				anchTag.setAttribute('target','_blank');

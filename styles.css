@@ -305,7 +305,14 @@ body {
     margin-top: 15px;
   }
 
-  article>div>embed{
+  article>div>iframe{
+    height: 220px;
+    width: 90%;
+    border: 2px solid black;
+    border-radius: 10px;
+  }
+
+  article>div>img{
     height: 220px;
     width: 90%;
     border: 2px solid black;
