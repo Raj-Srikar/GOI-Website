@@ -79,7 +79,7 @@ function alphaSort() {
 	sort_btn = document.getElementById('alphaSort')
 
 	for(i=0;i<anchs.length;i++){
-	    mapNames[i]=anchs[i].innerHTML.trim().toLowerCase()
+	    mapNames[i]=anchs[i].innerText.trim().toLowerCase()
 	}
 
 	mapNames.sort();
