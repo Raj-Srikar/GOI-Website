@@ -33,6 +33,7 @@ function fetchJSON() {
 				data[i]["Video"] ? ifrTag.setAttribute('src',embed(data[i]["Video"])) : imgTag.setAttribute('src',"images/noVideo.png");
 				ifrTag.setAttribute('srcdoc','<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href='+ifrTag.src+'><img src=https://img.youtube.com/vi/'+ifrTag.src.substr(ifrTag.src.indexOf('embed/')+6,11)+'/hqdefault.jpg><span>▶</span></a>')
 				ifrTag.setAttribute('loading','lazy');
+				ifrTag.setAttribute('allowfullscreen','');
 				data[i]["Video"] ? divTag.appendChild(ifrTag) : divTag.appendChild(imgTag);
 				h2Tag.setAttribute('title','Download '+data[i]["Map Name"]);
 				anchTag.setAttribute('href',data[i]["Download"]);
@@ -50,7 +51,7 @@ function fetchJSON() {
 				paraTag.appendChild(spanTag2);
 				newArticle.appendChild(divTag);
 				newArticle.appendChild(h2Tag);
-				if (data[i].halloween) {
+				if (data[i]['Category / Type / Style'].includes('Halloween')) {
 					newArticle.className = 'halloween-map';
 					newArticle.title = 'Halloween Map'
 					img1 = document.createElement('img');
@@ -59,7 +60,7 @@ function fetchJSON() {
 					newArticle.appendChild(img1);
 				}
 				newArticle.appendChild(paraTag);
-				if (data[i].halloween) {
+				if (data[i]['Category / Type / Style'].includes('Halloween')) {
 					img2 = document.createElement('img');
 					img2.src="images/halloween/jacko.png";
 					img2.className = "jacko";
@@ -183,7 +184,7 @@ function halloweenSort() {
 		isHalloween = false;
 
 		spiderWebDiv = document.createElement('div');
-		spiderWebDiv.innerHTML = '<img src="images/halloween/web-top-left.png" style="top:0;left:0"><img src="images/halloween/web-bottom-left.png" style="bottom:0;left:0"><img src="images/halloween/web-bottom-right.png" style="bottom:0;right:0"><img src="images/halloween/top-right-web.png" style="top:0;right:0;width: 18%;"><img src="images/halloween/spida.png" id="spider"><span id="webthread"></span>';
+		spiderWebDiv.innerHTML = '<img src="images/halloween/web-top-left.png" style="top:0;left:0"><img src="images/halloween/web-bottom-left.png" style="bottom:0;left:0"><img src="images/halloween/web-bottom-right.png" style="bottom:0;right:0"><img id="toprightweb" src="images/halloween/top-right-web.png" style="top:0;right:0;"><img src="images/halloween/spida.png" id="spider"><span id="webthread"></span>';
 		spiderWebDiv.setAttribute('id', 'spiderWebDiv');
 		document.getElementsByTagName('body')[0].appendChild(spiderWebDiv);
 		spiderAbove = true;

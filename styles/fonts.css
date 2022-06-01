@@ -1,0 +1,20 @@
+/* Custom Fonts */
+  @font-face{
+    font-family: Parrish;
+    src: url('../fonts/Parrish.ttf');
+    font-weight: bold;
+  }
+  @font-face{
+    font-family: Goudy;
+    src: url('../fonts/Goudy Old Style ITALIC.ttf');
+  }
+  @font-face{
+    font-family: Kohinoor;
+    src: url('../fonts/Kohinoor.ttf');
+    /*font-weight: bold;*/
+  }
+  @font-face{
+    font-family: DIN2014;
+    src: url('../fonts/DIN2014.ttf');
+    /*font-weight: 1000px;*/
+  }
