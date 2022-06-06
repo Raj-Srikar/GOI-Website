@@ -15,9 +15,6 @@ function fetchJSON() {
 	fetch('https://opensheet.elk.sh/11bmvaGVkJtoERDa9Caobigt3s7EsLEpEFqaVB2Gb2Xk/map_data')
 	.then(response=>response.json())
 	.then(data=>{
-			// body = document.getElementsByTagName('body')[0];
-			// main = document.getElementsByTagName('main')[0];
-			// body.appendChild(mainTag);
 			for (var i = 0; i < data.length; i++) {
 				newArticle = document.createElement('article');
 				divTag = document.createElement('div');
@@ -68,7 +65,6 @@ function fetchJSON() {
 				}
 				mainTag.appendChild(newArticle);
 			}
-			// body.appendChild(main);
 		}
 	)
 }
@@ -273,16 +269,6 @@ function content_list() {
 		lengths_lc.sort();
 	}
 }
-
-// sorted_lengths = [];
-// for (i = 0; i < lengths_lc.length; i++) {
-// 	for (var j = 0; j < lengths.length; j++) {
-// 		if (lengths_lc[i]==lengths[j].toLowerCase()){
-// 			sorted_lengths.push(lengths[j]);
-// 			break;
-// 		}
-// 	}
-// }
 
 function add_subMenu_content(content, lc, zeroOne) {
 	let subMenu = document.getElementsByClassName('sub-menu')[zeroOne];
