@@ -1,0 +1,185 @@
+/* For Mobile Screens */
+
+  @media only screen and (max-width: 768px) and (min-width: 481px){
+
+    body{
+      padding: 0;
+    }
+
+    #stt{
+      font-size: 21px;
+      bottom: 12px;
+      right: 12px;
+      padding: 9px 17px;
+    }
+
+    /* Webpage Header */
+
+      header{
+        min-width: 0;
+        min-height: 0;
+      }
+
+      h1{
+        font-size: 7vw;   /*mobile too*/
+      }
+
+      header>p{
+        font-size: 3vw;
+      }
+
+      nav{
+        margin-top: 10px;
+      }
+
+      nav>a{
+        background-size: 17vw;
+        font-size: 1.3vw;
+        padding-top: 18px;
+        padding-bottom: 22px;
+        padding-left: 15px;
+        padding-right: 25px;
+        margin: 10px 1.5vw;
+      }
+
+      nav>a:hover, nav>a:focus{
+        width: 12%;
+        padding-left: 15px;
+        font-size: 1.3vw;
+        margin: 10px 1.5vw;
+      }
+
+      nav>a>span{
+        padding-left: 0;
+      }
+
+    /* Controls */
+
+      #views{
+        height: auto;
+        margin-left: 0;
+      }
+
+      #views>span,#views>div{
+        font-size: 2.5vw;
+        margin: 20px 5px;
+        padding: 7px 13px 6px;
+      }
+
+      #alphaSort{
+        background-color: #0066ff;
+      }
+
+      .dropdown{
+        background-color: #0066ff;
+      }
+
+      .dropdown:hover{
+        background-color: #1c76fc;
+      }
+
+      .dropdown-content{
+        min-width: 96%;
+        margin-left: -13px;
+      }
+
+      .dropdown-content>div{
+        padding: 8px 12px;
+      }
+
+      .sub-menu{
+        height: 200px;
+        font-size: 97%;
+        margin-top: -3.5vw;
+        margin-left: 11.8vw;
+      }
+
+      .sub-menu>div{
+        padding: 9px 14px;
+      }
+
+    /* WebPage Main Content */
+
+      main{
+        grid-template-columns: repeat(auto-fill,minmax(45vw,1fr));
+        gap: 0.5rem;
+      }
+
+      article{
+        margin-top: 0;
+      }
+
+      article>div>iframe {
+        height: 22vw;
+      }
+
+      article>div>img{
+        height: 22vw;
+      }
+
+      h2{
+        margin: 10px;
+      }
+
+      article>h2>a{
+        font-size: 3.8vw;
+        margin: 0;
+      }
+
+      article:hover>h2>a{
+        font-size: 3.8vw;
+        margin: 0;
+      }
+
+      article>p{
+        font-size: 2vw;
+      }
+    
+    /* Halloween Theme */
+
+      #halloweenSort{
+        border-width: 1px !important;
+      }
+
+      .moonbats,.halloween-map:hover>.moonbats{
+        margin-top: -5%;
+        margin-left: -1%;
+        width: 14%;
+      }
+
+      .jacko,.halloween-map:hover>.jacko{
+        margin-left: 33.5vw;
+        margin-top: -13%;
+        width: 10%;
+      }
+
+      body>div>img{
+        width: 55%;
+        z-index: 100;
+      }
+
+      #toprightweb{
+        width: 27%;
+      }
+
+      #webthread{
+        width: 1px;
+      }
+
+      #spider{
+        right: 2vw;
+        width: 8vw;
+      }
+
+    /* WebPage Footer */
+
+      footer{
+        font-size: 17px;
+        margin: 0 -8px -8px;
+      }
+
+      #contr{
+        font-size: 13px;
+      }
+
+  }

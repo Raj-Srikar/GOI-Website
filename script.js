@@ -286,7 +286,7 @@ function add_subMenu_content(content, lc, zeroOne) {
 }
 
 
-var previous_creator='', previous_length='';
+var previous_creator='', previous_length='', creatorSub = false, lengthSub = false;
 function filter_by_content(content_tag, zeroOne) {
 	sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
 	notReverse = false;
@@ -383,8 +383,10 @@ function deselect_content_filter() {
 		lengthSub.onmouseleave = function (){};
 		lengthSelected = false;
 	}
-	lengthSub.style.backgroundColor = '';
-	creatorSub.style.backgroundColor = '';
+	if (lengthSub)
+		lengthSub.style.backgroundColor = '';
+	if (creatorSub)
+		creatorSub.style.backgroundColor = '';
 	notReverse = false;
 }
 
