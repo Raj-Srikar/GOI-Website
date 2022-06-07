@@ -22,6 +22,7 @@
 
       h1{
         font-size: 7vw;   /*mobile too*/
+        text-shadow: 2px 2px #000;
       }
 
       header>p{
@@ -40,6 +41,7 @@
         padding-left: 15px;
         padding-right: 25px;
         margin: 10px 1.5vw;
+        text-shadow: 1px 1px #000;
       }
 
       nav>a:hover, nav>a:focus{
@@ -136,6 +138,12 @@
       }
     
     /* Halloween Theme */
+
+      .scythes, .scythes:hover, .scythes:focus{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 3vw;
+      }
 
       #halloweenSort{
         border-width: 1px !important;

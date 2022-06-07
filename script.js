@@ -117,7 +117,7 @@ function apply_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, nav
 	halloweenButton.onmouseenter = function(){halloweenButton.style.color='#ffe002';halloweenButton.style.boxShadow='orangered 0px 0px 10px 5px'};
 	halloweenButton.onmouseleave = function(){halloweenButton.style.color='red';halloweenButton.style.boxShadow='#b94646 0px 0px 10px 5px'};
 	for (var i = 0; i < navATags.length; i++) {
-		navATags[i].style = "background-image: url(images/halloween/scythe.png);background-size: 100%;"
+		navATags[i].className = "scythes"
 	}
 	document.getElementById('filterBy').style = 'display:none';
 	let alphaSortTag = document.getElementById('alphaSort');
@@ -134,7 +134,7 @@ function remove_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, na
 	halloweenButton.onmouseenter = function(){};
 	halloweenButton.onmouseleave = function(){};
 	for (var i = 0; i < navATags.length; i++) {
-		navATags[i].style = "";
+		navATags[i].className = "";
 	}
 	document.getElementById('filterBy').style = '';
 	let alphaSortTag = document.getElementById('alphaSort');

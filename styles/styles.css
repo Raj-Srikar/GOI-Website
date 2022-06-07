@@ -49,12 +49,12 @@ body {
     border: 1px solid white;
     box-shadow: 0px 5px 10px 2px rgb(238 255 0 / 30%);
     cursor: default;
-    min-width: 1000px;
-    min-height: 250px;
+    /*min-width: 1000px;*/
+    min-height: 33.5vh;
   }
 
   h1{
-    font-size: 500%;
+    font-size: 5.5vw;
     font-family: Parrish, Helvetica, sans-serif;
     color: #eee;
     text-shadow: 4px 4px #000;
@@ -64,7 +64,7 @@ body {
   header>p{
     font-family: Goudy;
     color: #dce2d5;
-    font-size: 200%;
+    font-size: 2.1vw;
     margin-top: 0px;
     margin-bottom: 0px;
     text-shadow: 1px 1px #000;
@@ -77,6 +77,7 @@ body {
   }
 
   nav>a{
+    font-size: 1.1vw;
     color: white;
     display: inline-block;
     background-image: url(../images/HammerHead.png);
@@ -84,7 +85,7 @@ body {
     background-size: 85%;
     background-repeat: no-repeat;
     font-weight: bold;
-    margin: 25px 2% 15px;
+    margin: 25px 1.3vw 15px;
     padding: 30px;
     width: 12%;
     border-radius: 5px;
@@ -97,7 +98,7 @@ body {
   nav>a:hover,nav>a:focus{
     width: 15%;
     padding-left: 40px;
-    font-size: 20px;
+    font-size: 1.3vw;
     margin: 0px 2%;
   }
 
@@ -287,7 +288,13 @@ body {
     cursor: default;
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fill,minmax(360px,1fr));
+    grid-template-columns: repeat(auto-fill,minmax(400px,1fr));
+  }
+
+  @media only screen and (max-width: 846px){
+    main{
+      grid-template-columns: repeat(auto-fill,minmax(360px,1fr));
+    }
   }
 
   article{
@@ -364,6 +371,11 @@ body {
 
 
 /* Halloween Theme */
+
+  .scythes{
+    background-image: url(../images/halloween/scythe.png);
+    background-size: 100%;
+  }
 
   .halloween-map{
     border: 2px solid #b62828;
