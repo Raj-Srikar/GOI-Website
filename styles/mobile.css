@@ -114,16 +114,10 @@
         width: 80%;
       }
 
-      article>h2>a{
+      article>h2>a, article:hover>h2>a{
         font-size: 120%;
         margin: 10px;
         margin-bottom: 5px;
-      }
-
-      article:hover>h2>a{
-        font-size: 120%;
-        margin: 21px;
-        margin-bottom: 15px;
       }
 
       article>p{
@@ -138,15 +132,11 @@
       }
 
       .moonbats,.halloween-map:hover>.moonbats{
-        margin-top: -11%;
-        margin-left: 1%;
-        width: 22%;
+        width: 27%;
       }
 
       .jacko,.halloween-map:hover>.jacko{
-        margin-left: 73vw;
-        margin-top: -23%;
-        width: 16%;
+        width: 21%;
       }
 
       body>div>img{

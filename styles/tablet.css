@@ -150,15 +150,11 @@
       }
 
       .moonbats,.halloween-map:hover>.moonbats{
-        margin-top: -5%;
-        margin-left: -1%;
-        width: 14%;
+        width: 33%;
       }
 
       .jacko,.halloween-map:hover>.jacko{
-        margin-left: 33.5vw;
-        margin-top: -13%;
-        width: 10%;
+        width: 25%;
       }
 
       body>div>img{

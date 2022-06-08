@@ -49,8 +49,7 @@ body {
     border: 1px solid white;
     box-shadow: 0px 5px 10px 2px rgb(238 255 0 / 30%);
     cursor: default;
-    /*min-width: 1000px;*/
-    min-height: 33.5vh;
+    min-height: 23.5vh;
   }
 
   h1{
@@ -282,6 +281,10 @@ body {
 
 /* WebPage Main Content */
 
+  #mainDiv{
+    min-height: calc(40vh - 4rem);
+  }
+
   main{
     margin: 0 -5px 50px;
     text-align: center;
@@ -298,6 +301,7 @@ body {
   }
 
   article{
+    position: relative;
     border: 2px solid #39c1c8;
     margin: 20px 10px;
     display: inline-block;
@@ -333,7 +337,6 @@ body {
   }
 
   article>h2>a{
-    display: block;
     font-family: DIN2014;
     letter-spacing: 1px;
     text-decoration: none;
@@ -410,29 +413,27 @@ body {
   .moonbats{
     display: block;
     position: absolute;
-    margin-top: -2.7rem;
-    margin-left: 0rem;
+    bottom: 3.5%;
+    left: -1.5%;
     width: 8.5rem;
   }
 
   .halloween-map:hover>.moonbats{
     width: 9.5rem;
-    margin-left: -0.3rem;
     transform: rotate(40deg);
   }
 
   .jacko{
     display: block;
     position: absolute;
-    margin-left: 20.5rem;
-    margin-top: -7.5rem;
+    right: 2%;
+    bottom: 5%;
     width: 6.5rem;
     transform: rotate(10deg);
   }
 
   .halloween-map:hover>.jacko{
     width: 7.5rem;
-    margin-left: 20rem;
     transform: rotate(-20deg);
   }
 
@@ -471,7 +472,7 @@ body {
   footer{
     color: white;
     border-top: 2px solid white;
-    margin: auto;
+    margin: auto -13px -13px;
     text-align: center;
     padding: 20px;
     font-family: monospace;
@@ -479,5 +480,5 @@ body {
     background: #00000088;
   }
   #contr{
-    font-size: 17px;
+    font-size: 15px;
   }
