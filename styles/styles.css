@@ -316,6 +316,7 @@ body {
 
   article:hover{
     background: linear-gradient(#ffffff11, #ffffff11), url(../images/Menu.png);
+    padding-bottom: 0;
   }
 
   article>div{

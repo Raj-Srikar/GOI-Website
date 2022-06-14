@@ -91,13 +91,26 @@ function alphaSort() {
 		notReverse = true;
 	}
 
+	let histo = {}
+	let skipIters = 0
 	let newMain = document.createElement('main');
 	for(i=0;i<anchs.length;i++){
+		if (mapNames[i] in histo) {
+			histo[mapNames[i]]++;
+		}
+		else{
+			histo[mapNames[i]] = 1;
+		}
+		skipIters = histo[mapNames[i]];
 	    for(j=0;j<anchs.length;j++){
 		    anch = anchs[j]
 		    thisMap = anch.innerText.trim();
 		    article = anch.parentNode.parentNode.cloneNode(true);
 	        if(mapNames[i]==thisMap.toLowerCase()){
+	        	if (skipIters>1) {
+	        		skipIters--;
+	        		continue;
+	        	}
 		        newMain.appendChild(article);
 	            break;
 	        }
@@ -440,6 +453,11 @@ window.onscroll = function() {scrollFunction()};
 
 fetchJSON();
 setTimeout(function(){
+	if(document.getElementsByTagName('main')[0].childNodes.length==1){
+	    location.reload();
+	    console.log('Reloading...');
+	    return;
+	}
 	content_list();
 	add_subMenu_content(creators,creators_lc,0);
 	add_subMenu_content(lengths,lengths_lc,1);
