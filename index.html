@@ -18,7 +18,10 @@
    Getting Over It Custom Maps
   </title>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <link href="styles.css" rel="stylesheet" type="text/css"/>
+  <link href="styles/styles.css" rel="stylesheet" type="text/css"/>
+  <link href="styles/tablet.css" rel="stylesheet" type="text/css"/>
+  <link href="styles/mobile.css" rel="stylesheet" type="text/css"/>
+  <link href="styles/fonts.css" rel="stylesheet" type="text/css"/>
   <script crossorigin="anonymous" src="https://kit.fontawesome.com/f325a34ebe.js">
   </script>
  </head>
@@ -70,12 +73,12 @@
     </a>
    </nav>
   </header>
-  <div style="height: 83px; user-select: none; margin-left: 20px;">
+  <div id="views">
    <span id="alphaSort" onclick="alphaSort()">
     <i class="fas fa-sort-alpha-down">
     </i>
    </span>
-   <span id="halloweenSort" onclick="//halloweenSort()" title="Halloween Theme is temporarily disabled" style="background: #666; color: #eee; cursor: default;">
+   <span id="halloweenSort" onclick="halloweenSort()">
     <i class="fas fa-ghost"></i>
    </span>
    <div class="dropdown" id="filterBy">
@@ -112,7 +115,7 @@
   </div>
   <footer>
     <p>Website By: Raj Srikar (DRS)</p>
-    <p style="font-size:17px">Ex-Contributors: Clody, Woahbust</p>
+    <p id="contr">Ex-Contributors: Clody, Woahbust</p>
   </footer>
   <script src="script.js">
   </script>

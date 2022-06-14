@@ -15,13 +15,10 @@ function fetchJSON() {
 	fetch('https://opensheet.elk.sh/11bmvaGVkJtoERDa9Caobigt3s7EsLEpEFqaVB2Gb2Xk/map_data')
 	.then(response=>response.json())
 	.then(data=>{
-			// body = document.getElementsByTagName('body')[0];
-			// main = document.getElementsByTagName('main')[0];
-			// body.appendChild(mainTag);
 			for (var i = 0; i < data.length; i++) {
 				newArticle = document.createElement('article');
 				divTag = document.createElement('div');
-				embedTag = document.createElement('embed');
+				data[i]["Video"] ? ifrTag = document.createElement('iframe'):imgTag = document.createElement('img');
 				h2Tag = document.createElement('h2');
 				anchTag = document.createElement('a');
 				paraTag = document.createElement('p');
@@ -30,8 +27,11 @@ function fetchJSON() {
 				brTag = document.createElement('br');
 				boldTag2 = document.createElement('b');
 				spanTag2 = document.createElement('span');
-				data[i]["Video"] ? embedTag.setAttribute('src',embed(data[i]["Video"])) : embedTag.setAttribute('src',embed("images/noVideo.png"));
-				divTag.appendChild(embedTag);
+				data[i]["Video"] ? ifrTag.setAttribute('src',embed(data[i]["Video"])) : imgTag.setAttribute('src',"images/noVideo.png");
+				ifrTag.setAttribute('srcdoc','<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href='+ifrTag.src+'><img src=https://img.youtube.com/vi/'+ifrTag.src.substr(ifrTag.src.indexOf('embed/')+6,11)+'/hqdefault.jpg><span>▶</span></a>')
+				ifrTag.setAttribute('loading','lazy');
+				ifrTag.setAttribute('allowfullscreen','');
+				data[i]["Video"] ? divTag.appendChild(ifrTag) : divTag.appendChild(imgTag);
 				h2Tag.setAttribute('title','Download '+data[i]["Map Name"]);
 				anchTag.setAttribute('href',data[i]["Download"]);
 				anchTag.setAttribute('target','_blank');
@@ -48,7 +48,7 @@ function fetchJSON() {
 				paraTag.appendChild(spanTag2);
 				newArticle.appendChild(divTag);
 				newArticle.appendChild(h2Tag);
-				if (data[i].halloween) {
+				if (data[i]['Category / Type / Style'].includes('Halloween')) {
 					newArticle.className = 'halloween-map';
 					newArticle.title = 'Halloween Map'
 					img1 = document.createElement('img');
@@ -57,7 +57,7 @@ function fetchJSON() {
 					newArticle.appendChild(img1);
 				}
 				newArticle.appendChild(paraTag);
-				if (data[i].halloween) {
+				if (data[i]['Category / Type / Style'].includes('Halloween')) {
 					img2 = document.createElement('img');
 					img2.src="images/halloween/jacko.png";
 					img2.className = "jacko";
@@ -65,7 +65,6 @@ function fetchJSON() {
 				}
 				mainTag.appendChild(newArticle);
 			}
-			// body.appendChild(main);
 		}
 	)
 }
@@ -77,7 +76,7 @@ function alphaSort() {
 	sort_btn = document.getElementById('alphaSort')
 
 	for(i=0;i<anchs.length;i++){
-	    mapNames[i]=anchs[i].innerHTML.trim().toLowerCase()
+	    mapNames[i]=anchs[i].innerText.trim().toLowerCase()
 	}
 
 	mapNames.sort();
@@ -118,7 +117,7 @@ function apply_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, nav
 	halloweenButton.onmouseenter = function(){halloweenButton.style.color='#ffe002';halloweenButton.style.boxShadow='orangered 0px 0px 10px 5px'};
 	halloweenButton.onmouseleave = function(){halloweenButton.style.color='red';halloweenButton.style.boxShadow='#b94646 0px 0px 10px 5px'};
 	for (var i = 0; i < navATags.length; i++) {
-		navATags[i].style = "background-image: url(images/halloween/scythe.png);background-size: 100%;"
+		navATags[i].className = "scythes"
 	}
 	document.getElementById('filterBy').style = 'display:none';
 	let alphaSortTag = document.getElementById('alphaSort');
@@ -135,7 +134,7 @@ function remove_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, na
 	halloweenButton.onmouseenter = function(){};
 	halloweenButton.onmouseleave = function(){};
 	for (var i = 0; i < navATags.length; i++) {
-		navATags[i].style = "";
+		navATags[i].className = "";
 	}
 	document.getElementById('filterBy').style = '';
 	let alphaSortTag = document.getElementById('alphaSort');
@@ -181,7 +180,7 @@ function halloweenSort() {
 		isHalloween = false;
 
 		spiderWebDiv = document.createElement('div');
-		spiderWebDiv.innerHTML = '<img src="images/halloween/web-top-left.png" style="top:0;left:0"><img src="images/halloween/web-bottom-left.png" style="bottom:0;left:0"><img src="images/halloween/web-bottom-right.png" style="bottom:0;right:0"><img src="images/halloween/top-right-web.png" style="top:0;right:0;width: 18%;"><img src="images/halloween/spida.png" id="spider"><span id="webthread"></span>';
+		spiderWebDiv.innerHTML = '<img src="images/halloween/web-top-left.png" style="top:0;left:0"><img src="images/halloween/web-bottom-left.png" style="bottom:0;left:0"><img src="images/halloween/web-bottom-right.png" style="bottom:0;right:0"><img id="toprightweb" src="images/halloween/top-right-web.png" style="top:0;right:0;"><img src="images/halloween/spida.png" id="spider"><span id="webthread"></span>';
 		spiderWebDiv.setAttribute('id', 'spiderWebDiv');
 		document.getElementsByTagName('body')[0].appendChild(spiderWebDiv);
 		spiderAbove = true;
@@ -271,16 +270,6 @@ function content_list() {
 	}
 }
 
-// sorted_lengths = [];
-// for (i = 0; i < lengths_lc.length; i++) {
-// 	for (var j = 0; j < lengths.length; j++) {
-// 		if (lengths_lc[i]==lengths[j].toLowerCase()){
-// 			sorted_lengths.push(lengths[j]);
-// 			break;
-// 		}
-// 	}
-// }
-
 function add_subMenu_content(content, lc, zeroOne) {
 	let subMenu = document.getElementsByClassName('sub-menu')[zeroOne];
 	for (i = 0; i < lc.length; i++) {
@@ -297,7 +286,7 @@ function add_subMenu_content(content, lc, zeroOne) {
 }
 
 
-var previous_creator='', previous_length='';
+var previous_creator='', previous_length='', creatorSub = false, lengthSub = false;
 function filter_by_content(content_tag, zeroOne) {
 	sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
 	notReverse = false;
@@ -394,8 +383,10 @@ function deselect_content_filter() {
 		lengthSub.onmouseleave = function (){};
 		lengthSelected = false;
 	}
-	lengthSub.style.backgroundColor = '';
-	creatorSub.style.backgroundColor = '';
+	if (lengthSub)
+		lengthSub.style.backgroundColor = '';
+	if (creatorSub)
+		creatorSub.style.backgroundColor = '';
 	notReverse = false;
 }
 
@@ -454,4 +445,3 @@ setTimeout(function(){
 	add_subMenu_content(lengths,lengths_lc,1);
 	alphaSort();
 }, 1000);
-mobileNotSupported()

@@ -4,7 +4,7 @@ html{
 
 body {
   font-family: Kohinoor, Helvetica, sans-serif;
-  background: linear-gradient(#00000055, #00000055), url(images/GoiDio.png);
+  background: linear-gradient(#00000055, #00000055), url(../images/GoiDio.png);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -41,7 +41,7 @@ body {
   header{
     text-align: center;
     padding-top: 25px;
-    background: linear-gradient(to left, #00000033, #00000000), url("images/poster.jpg");
+    background: linear-gradient(to left, #00000033, #00000000), url("../images/poster.jpg");
     background-position: center;
     background-repeat: repeat;
     background-size: 125%;
@@ -49,10 +49,11 @@ body {
     border: 1px solid white;
     box-shadow: 0px 5px 10px 2px rgb(238 255 0 / 30%);
     cursor: default;
+    min-height: 23.5vh;
   }
 
   h1{
-    font-size: 500%;
+    font-size: 5.5vw;
     font-family: Parrish, Helvetica, sans-serif;
     color: #eee;
     text-shadow: 4px 4px #000;
@@ -62,7 +63,7 @@ body {
   header>p{
     font-family: Goudy;
     color: #dce2d5;
-    font-size: 200%;
+    font-size: 2.1vw;
     margin-top: 0px;
     margin-bottom: 0px;
     text-shadow: 1px 1px #000;
@@ -75,14 +76,15 @@ body {
   }
 
   nav>a{
+    font-size: 1.1vw;
     color: white;
     display: inline-block;
-    background-image: url(images/HammerHead.png);
+    background-image: url(../images/HammerHead.png);
     background-position: center;
     background-size: 85%;
     background-repeat: no-repeat;
     font-weight: bold;
-    margin: 25px 2% 15px;
+    margin: 25px 1.3vw 15px;
     padding: 30px;
     width: 12%;
     border-radius: 5px;
@@ -95,12 +97,18 @@ body {
   nav>a:hover,nav>a:focus{
     width: 15%;
     padding-left: 40px;
-    font-size: 20px;
+    font-size: 1.3vw;
     margin: 0px 2%;
   }
 
   nav>a>span{
     padding-left: 10px;
+  }
+
+  #views{
+    height: 83px;
+    user-select: none;
+    margin-left: 20px;
   }
 
 
@@ -273,15 +281,27 @@ body {
 
 /* WebPage Main Content */
 
+  #mainDiv{
+    min-height: calc(40vh - 4rem);
+  }
+
   main{
     margin: 0 -5px 50px;
     text-align: center;
     cursor: default;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill,minmax(400px,1fr));
+  }
+
+  @media only screen and (max-width: 846px){
+    main{
+      grid-template-columns: repeat(auto-fill,minmax(360px,1fr));
+    }
   }
 
   article{
-    width: 30%;
-    height: 50%;
+    position: relative;
     border: 2px solid #39c1c8;
     margin: 20px 10px;
     display: inline-block;
@@ -289,20 +309,27 @@ body {
     padding: 5px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 2px #45aab2;
-    background: linear-gradient(#00000000, #00000000), url(images/Menu.png);
+    background: linear-gradient(#00000000, #00000000), url(../images/Menu.png);
     background-position: center;
     transition: 0.5s;
   }
 
   article:hover{
-    background: linear-gradient(#ffffff11, #ffffff11), url(images/Menu.png);
+    background: linear-gradient(#ffffff11, #ffffff11), url(../images/Menu.png);
   }
 
   article>div{
     margin-top: 15px;
   }
 
-  article>div>embed{
+  article>div>iframe{
+    height: 220px;
+    width: 90%;
+    border: 2px solid black;
+    border-radius: 10px;
+  }
+
+  article>div>img{
     height: 220px;
     width: 90%;
     border: 2px solid black;
@@ -310,7 +337,6 @@ body {
   }
 
   article>h2>a{
-    display: block;
     font-family: DIN2014;
     letter-spacing: 1px;
     text-decoration: none;
@@ -349,15 +375,20 @@ body {
 
 /* Halloween Theme */
 
+  .scythes{
+    background-image: url(../images/halloween/scythe.png);
+    background-size: 100%;
+  }
+
   .halloween-map{
     border: 2px solid #b62828;
     box-shadow: 0px 0px 10px 2px #b94646;
-    background: linear-gradient(#00000000, #00000000), url(images/halloween/RedSmoke.png);
+    background: linear-gradient(#00000000, #00000000), url(../images/halloween/RedSmoke.png);
     background-position: center;
   }
 
   .halloween-map:hover{
-    background: linear-gradient(#ffffff11, #ffffff11), url(images/halloween/RedSmoke.png);
+    background: linear-gradient(#ffffff11, #ffffff11), url(../images/halloween/RedSmoke.png);
   }
 
   .halloween-map>h2>a{
@@ -382,29 +413,27 @@ body {
   .moonbats{
     display: block;
     position: absolute;
-    margin-top: -3%;
-    margin-left: 0;
-    width: 9%;
+    bottom: 3.5%;
+    left: -1.5%;
+    width: 8.5rem;
+  }
+
+  .halloween-map:hover>.moonbats{
+    width: 9.5rem;
+    transform: rotate(40deg);
   }
 
   .jacko{
     display: block;
     position: absolute;
-    margin-left: 22%;
-    margin-top: -8%;
-    width: 7%;
+    right: 2%;
+    bottom: 5%;
+    width: 6.5rem;
     transform: rotate(10deg);
   }
 
-  .halloween-map:hover>.moonbats{
-    width: 10%;
-    margin-left: -0.5%;
-    transform: rotate(40deg);
-  }
-
   .halloween-map:hover>.jacko{
-    width: 8%;
-    margin-left: 21.5%;
+    width: 7.5rem;
     transform: rotate(-20deg);
   }
 
@@ -414,6 +443,10 @@ body {
     width: 35%;
     pointer-events: none;
     z-index: 2;
+  }
+
+  #toprightweb{
+    width: 18%;
   }
 
   #spider{
@@ -435,35 +468,17 @@ body {
 
 
 /* WebPage Footer */
+
   footer{
     color: white;
     border-top: 2px solid white;
-    margin: auto;
+    margin: auto -13px -13px;
     text-align: center;
     padding: 20px;
     font-family: monospace;
     font-size: 20px;
     background: #00000088;
   }
-
-
-/* Custom Fonts */
-  @font-face{
-    font-family: Parrish;
-    src: url('fonts/Parrish.ttf');
-    font-weight: bold;
-  }
-  @font-face{
-    font-family: Goudy;
-    src: url('fonts/Goudy Old Style ITALIC.ttf');
-  }
-  @font-face{
-    font-family: Kohinoor;
-    src: url('fonts/Kohinoor.ttf');
-    /*font-weight: bold;*/
-  }
-  @font-face{
-    font-family: DIN2014;
-    src: url('fonts/DIN2014.ttf');
-    /*font-weight: 1000px;*/
+  #contr{
+    font-size: 15px;
   }
