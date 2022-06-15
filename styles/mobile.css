@@ -83,7 +83,8 @@
       }
 
       .sub-menu{
-        height: 165px;
+        max-height: 170px;
+        min-height: 75px;
         font-size: 95%;
         margin-top: -21px;
         margin-left: 95px;

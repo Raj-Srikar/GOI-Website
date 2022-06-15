@@ -223,7 +223,8 @@ body {
     }
 
     .sub-menu {
-      height: 250px;
+      min-height: 100px;
+      max-height: 250px;
       font-weight: normal;
       font-size: 90%;
       display: none;
@@ -347,7 +348,6 @@ body {
     margin: 25px;
     margin-bottom: 15px;
     position: relative;
-    z-index: 1;
   }
 
   article>h2>a:hover,article>h2>a:focus{
@@ -364,7 +364,6 @@ body {
     font-size: 120%;
     cursor: default;
     position: relative;
-    z-index: 1;
   }
 
   article>p>span{
@@ -395,11 +394,13 @@ body {
   .halloween-map>h2>a{
     color: orange;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    z-index: 1;
   }
 
   .halloween-map>p{
     color: darkorange;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    z-index: 1;
   }
 
   .halloween-map>h2>a:hover,.halloween-map>h2>a:focus{
@@ -465,6 +466,7 @@ body {
     width: 2px;
     height: 13%;
     transition:5s;
+    z-index: 2;
   }
 
 

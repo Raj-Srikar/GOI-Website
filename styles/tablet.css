@@ -90,10 +90,11 @@
       }
 
       .sub-menu{
-        height: 200px;
+        max-height: 155px;
+        min-height: 75px;
         font-size: 97%;
-        margin-top: -3.5vw;
-        margin-left: 11.8vw;
+        margin-top: -2.6vh;
+        margin-left: 12vw;
       }
 
       .sub-menu>div{
