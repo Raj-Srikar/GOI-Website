@@ -1,10 +1,24 @@
-var notReverse = true, isHalloween = true, creatorSelected = false, typeSelected = false, getAlphaMain = true;
+var notReverse = true, isHalloween = true, filterEnabled = false, getAlphaMain = true;
 mainTag = document.getElementsByTagName('main')[0];
 
 function embed(link) {
 	link = String(link)
-	if (link.includes('?t'))
+	if (link.includes('?t') || link.includes('&t')){
 		link = link.replace('?t', '?start');
+		link = link.replace('&t', '?start');
+		time = link.substr(link.indexOf('?start=')+'?start='.length);
+		if (time.includes('s')) {
+			if (time.includes('m')) {
+				mins = parseInt(time.split('m')[0]);
+				secs = parseInt(time.substring(time.indexOf('m')+1,time.length-1));
+				time = mins*60+secs;
+			}
+			else{
+				time = time.substring(0,time.length-1);
+			}
+			link = link.substr(0,link.indexOf('?start=')+'?start='.length)+time;
+		}
+	}
 	embeded = link.replace('watch?v=','embed/');
 	if (link == embeded)
 		embeded = link.replace('youtu.be', 'youtube.com/embed');
@@ -15,85 +29,64 @@ creators = new Set();
 lengths = new Set();
 categories = new Set();
 dimensions = new Set();
-
+var mapsJSON;
 function fetchJSON() {
 	fetch('https://opensheet.elk.sh/11bmvaGVkJtoERDa9Caobigt3s7EsLEpEFqaVB2Gb2Xk/map_data')
 	.then(response=>response.json())
 	.then(data=>{
-			for (var i = 0; i < data.length; i++) {
-				newArticle = document.createElement('article');
-				divTag = document.createElement('div');
-				data[i]["Video"] ? ifrTag = document.createElement('iframe'):imgTag = document.createElement('img');
-				h2Tag = document.createElement('h2');
-				anchTag = document.createElement('a');
-				paraTag = document.createElement('p');
-				boldTag1 = document.createElement('b');
-				spanTag1 = document.createElement('span');
-				brTag = document.createElement('br');
-				boldTag2 = document.createElement('b');
-				spanTag2 = document.createElement('span');
-				data[i]["Video"] ? ifrTag.setAttribute('src',embed(data[i]["Video"])) : imgTag.setAttribute('src',"images/noVideo.png");
-				ifrTag.setAttribute('srcdoc','<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href='+ifrTag.src+'><img src=https://img.youtube.com/vi/'+ifrTag.src.substr(ifrTag.src.indexOf('embed/')+6,11)+'/hqdefault.jpg><span>▶</span></a>')
-				ifrTag.setAttribute('loading','lazy');
-				ifrTag.setAttribute('allowfullscreen','');
-				data[i]["Video"] ? divTag.appendChild(ifrTag) : divTag.appendChild(imgTag);
-				h2Tag.setAttribute('title','Download '+data[i]["Map Name"]);
-				anchTag.setAttribute('href',data[i]["Download"]);
-				anchTag.setAttribute('target','_blank');
-				anchTag.innerHTML=data[i]["Map Name"];
-				h2Tag.appendChild(anchTag);
-				boldTag1.innerHTML='Creator:';
-				spanTag1.innerHTML=data[i]["Author"];
-				boldTag2.innerHTML='Map Type:';
-				mapType = data[i]["Length"] + ' ' + data[i]["Category / Type / Style"] + ' ' + data[i]["3D / 2.5D / 2D"];
-				spanTag2.innerHTML = mapType.trim().length !== 0 ? mapType : 'Not Specified';
-				paraTag.appendChild(boldTag1);
-				paraTag.appendChild(spanTag1);
-				paraTag.appendChild(brTag);
-				paraTag.appendChild(boldTag2);
-				paraTag.appendChild(spanTag2);
-				newArticle.appendChild(divTag);
-				newArticle.appendChild(h2Tag);
-				if (data[i]['Category / Type / Style'].includes('Halloween')) {
-					newArticle.className = 'halloween-map';
-					newArticle.title = 'Halloween Map'
-					img1 = document.createElement('img');
-					img1.src="images/halloween/moonbats.png";
-					img1.className = "moonbats";
-					newArticle.appendChild(img1);
-				}
-				newArticle.appendChild(paraTag);
-				if (data[i]['Category / Type / Style'].includes('Halloween')) {
-					img2 = document.createElement('img');
-					img2.src="images/halloween/jacko.png";
-					img2.className = "jacko";
-					newArticle.appendChild(img2);
-				}
-				mainTag.appendChild(newArticle);
-				creators.add(data[i]["Author"]);
-				lengths.add(data[i]["Length"]);
-				categories.add(data[i]["Category / Type / Style"]);
-				dimensions.add(data[i]["3D / 2.5D / 2D"]);
-			}
-			creators = [...creators].sort().filter(ele => {return ele.length!=0});
-			lengths = [...lengths].sort().filter(ele => {return ele.length!=0});
-			cates = [...categories].filter(ele => {return ele.length!=0});
-			categories.clear();
-			for(i=0; i<cates.length; i++){
-			    if(cates[i].includes(',')){
-			        deli = cates[i].split(', ')
-			        for(j=0; j<deli.length; j++)
-			            categories.add(deli[j])
-			    }
-			    else
-			        categories.add(cates[i])
-			}
-			cates_sorted = [...categories].sort().filter(ele => {return !ele.startsWith('(')});
-			categories = uniqueValuesIgnoreCase(cates_sorted);
-			categories.splice(categories.indexOf('Halloween'), 1);
-			dimensions = [...dimensions].sort().filter(ele => {return ele.length!=0});
+		mapsJSON = data;
+		displayMaps(data);
+		creators = [...creators].sort().filter(ele => {return ele.length!=0});
+		lengths = [...lengths].sort().filter(ele => {return ele.length!=0});
+		cates = [...categories].filter(ele => {return ele.length!=0});
+		categories.clear();
+		for(i=0; i<cates.length; i++){
+		    if(cates[i].includes(',')){
+		        deli = cates[i].split(', ')
+		        for(j=0; j<deli.length; j++)
+		            categories.add(deli[j])
+		    }
+		    else
+		        categories.add(cates[i])
 		}
-	)
+		cates_sorted = [...categories].sort().filter(ele => {return !ele.startsWith('(')});
+		categories = uniqueValuesIgnoreCase(cates_sorted);
+		categories.splice(categories.indexOf('Halloween'), 1);
+		dimensions = [...dimensions].sort().filter(ele => {return ele.length!=0});
+	});
+}
+
+function displayMaps(maps) {
+	let htmlString = maps.map((map)=>{
+		let isHalloweenMap = map['Category / Type / Style'].includes('Halloween');
+		string = `
+		<article ${isHalloweenMap ? 'class="halloween-map" title="Halloween Map"' : ''}>
+			<div>`;
+		string +=
+			map['Video']
+			?`<iframe src="${embed(map['Video'])}" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=${embed(map['Video'])}><img src=https://img.youtube.com/vi/${embed(map['Video']).substr(embed(map['Video']).indexOf('embed/')+6,11)}/hqdefault.jpg><span>▶</span></a>" loading="lazy" allowfullscreen=""></iframe>`
+			: `<img src="images/noVideo.png">`;
+		string += `</div>
+			<h2 title="Download ${map['Map Name']}"><a href="${map['Download']}" target="_blank">${map['Map Name']}</a></h2>`;
+		if (isHalloweenMap) string += `<img src="images/halloween/moonbats.png" class="moonbats">`;
+		string += `
+			<p><b>Creator:</b><span>${map['Author']}</span>
+				<br><b>Map Type:</b><span>`;
+		mapType = map["Length"] + ' ' + map["Category / Type / Style"] + ' ' + map["3D / 2.5D / 2D"];
+		string += `${mapType.trim().length !== 0 ? mapType : 'Not Specified'}</span></p>`;
+		if (isHalloweenMap) string += `<img src="images/halloween/jacko.png" class="jacko">`;
+		string += `
+		</article>
+		`;
+		if (mainTag.innerHTML.trim() == '') {
+			creators.add(map["Author"]);
+			lengths.add(map["Length"]);
+			categories.add(map["Category / Type / Style"]);
+			dimensions.add(map["3D / 2.5D / 2D"]);
+		}
+		return string;
+	}).join('');
+	document.getElementsByTagName('main')[0].innerHTML = htmlString;
 }
 
 function uniqueValuesIgnoreCase(arr) {
@@ -163,7 +156,13 @@ function alphaSort() {
 	mainDiv.appendChild(newMain)
 }
 
-function apply_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, navATags) {
+function apply_halloween_theme() {
+	let bodyTag = document.getElementsByTagName('body')[0];
+	let headerTag = document.getElementsByTagName('header')[0];
+	let tagLine = headerTag.getElementsByTagName('p')[0];
+	let halloweenButton = document.getElementById('halloweenSort');
+	let navATags = headerTag.getElementsByTagName('a');
+
 	bodyTag.style = "background-image: linear-gradient(#00000033, #00000033), url(https://www.wallpapertip.com/wmimgs/67-676387_halloween-wallpapers-hd-3-halloween-night-wallpaper-hd.jpg);";
 	headerTag.style = "background-image: linear-gradient(to left, #00000055, #00000055), url(https://cdn.wallpapersafari.com/49/15/H0xLQG.jpg);background-position-y: 90%;box-shadow: 0px 5px 20px 5px rgb(255 94 0 / 30%);";
 	tagLine = "color: #e2ddd5;";
@@ -180,7 +179,13 @@ function apply_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, nav
 	alphaSortTag.onmouseleave = function(){this.style.boxShadow = 'rgb(146 185 70) 0px 0px 10px 2px';this.style.color = 'limegreen';this.style.border = '1px solid limegreen';};
 }
 
-function remove_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, navATags) {
+function remove_halloween_theme() {
+	let bodyTag = document.getElementsByTagName('body')[0];
+	let headerTag = document.getElementsByTagName('header')[0];
+	let tagLine = headerTag.getElementsByTagName('p')[0];
+	let halloweenButton = document.getElementById('halloweenSort');
+	let navATags = headerTag.getElementsByTagName('a');
+
 	bodyTag.style = "";
 	headerTag.style = "";
 	tagLine = "";
@@ -216,18 +221,13 @@ function halloweenSort() {
 	if (!deselect_filter_halloween) {
 		deselect_content_filter();
 	}
-	let bodyTag = document.getElementsByTagName('body')[0];
-	let headerTag = document.getElementsByTagName('header')[0];
-	let tagLine = headerTag.getElementsByTagName('p')[0];
-	let halloweenButton = document.getElementById('halloweenSort');
-	let navATags = headerTag.getElementsByTagName('a');
 
 	let oldMain = document.getElementsByTagName('main')[0];
-	halloweenMaps = oldMain.getElementsByClassName('halloween-map');
+	let halloweenMaps = oldMain.getElementsByClassName('halloween-map');
 	let newMain = document.createElement('main');
 
 	if (isHalloween) {
-		apply_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, navATags);
+		apply_halloween_theme();
 		for (var i = 0; i < halloweenMaps.length; i++) {
 			newMain.appendChild(halloweenMaps[i].cloneNode(true));
 		}
@@ -250,7 +250,7 @@ function halloweenSort() {
 			}, 10000);
 	}
 	else{
-		remove_halloween_theme(bodyTag, headerTag, tagLine, halloweenButton, navATags);
+		remove_halloween_theme();
 		newMain = mainTag;
 		isHalloween = true;
 		clearInterval(spiderInterval);
@@ -258,7 +258,6 @@ function halloweenSort() {
 		notReverse = false;
 		document.getElementById('alphaSort').innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
 	}
-
 
 	oldMain.remove();
 	mainDiv.appendChild(newMain)
@@ -308,7 +307,7 @@ function add_subMenu_content(content, lc, index) {
 }
 
 
-var previous_creator='', previous_type='', creatorSub = false, typeSub = false;
+var previous_content='', contentSub = false;
 function filter_by_content(content_tag, index) {
 	sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
 	notReverse = false;
@@ -318,100 +317,53 @@ function filter_by_content(content_tag, index) {
 		subs[i].onmouseenter = function(){scrollBack(this)};
 		subs[i].onmouseleave = function(){};
 	}
-	if (previous_creator!='') {
-		previous_creator.style.backgroundColor='';
-		previous_creator.onmouseenter = function(){};
-		previous_creator.onmouseleave = function(){};
-	}
-	if (previous_type!='') {
-		previous_type.style.backgroundColor='';
-		previous_type.onmouseenter = function(){};
-		previous_type.onmouseleave = function(){};
+	if (previous_content!='') {
+		previous_content.style.backgroundColor='';
+		previous_content.onmouseenter = function(){};
+		previous_content.onmouseleave = function(){};
 	}
 	content = content_tag.innerText;
-	creatorSub = content_tag.parentNode.parentNode;
-	typeSub = content_tag.parentNode.parentNode;
-	if (index==0){
-		creatorSub.style.backgroundColor = '#b4ffc7';
-		creatorSub.onmouseenter = function (){this.style.backgroundColor = '#91eaa8';scrollBack(this)};
-		creatorSub.onmouseleave = function (){this.style.backgroundColor = '#b4ffc7';};
-	}
-	else if (index>0) {
-		typeSub.style.backgroundColor = '#b4ffc7';
-		typeSub.onmouseenter = function (){this.style.backgroundColor = '#91eaa8';scrollBack(this)};
-		typeSub.onmouseleave = function (){this.style.backgroundColor = '#b4ffc7';};
-	}
+	contentSub = content_tag.parentNode.parentNode;
+	contentSub.style.backgroundColor = '#b4ffc7';
+	contentSub.onmouseenter = function (){this.style.backgroundColor = '#91eaa8';scrollBack(this)};
+	contentSub.onmouseleave = function (){this.style.backgroundColor = '#b4ffc7';};
+	
 	content_tag.style.backgroundColor = '#b4ffc7';
 	content_tag.onmouseenter =  function () {this.style.backgroundColor = '#91eaa8';}
 	content_tag.onmouseleave = function(){this.style.backgroundColor = '#b4ffc7';}
 	content_tag.parentNode.style.display = 'none';
-	articles = mainTag.getElementsByTagName('article');
-	newMainTag = mainTag;		// for getting the original main tag without any sorts or filters
-	thisMain = document.getElementsByTagName('main')[0];
-	thisMain.remove();
-	mainDiv.appendChild(newMainTag);
-	thisMain = document.getElementsByTagName('main')[0];
-	mainByContent = document.createElement('main');
-	for(i=0;i<articles.length;i++){
-		if (index>0) {
-			checkName = articles[i].getElementsByTagName('span')[1].innerText;
-		    if(checkName.toLowerCase().includes(content.toLowerCase()))
-		        mainByContent.appendChild(articles[i].cloneNode(true));
-		}
+
+	filteredContent = mapsJSON.filter(obj => {
+		if (index==0)
+			return content == obj['Author']
 		else{
-		    checkName = articles[i].getElementsByTagName('span')[index].innerText;
-		    if(checkName==content)    
-		        mainByContent.appendChild(articles[i].cloneNode(true));
-	    }
-	}
-	thisMain.remove();
-	mainDiv.appendChild(mainByContent);
-	if (index==0) {
-		creatorSelected = true;
-		previous_creator = content_tag;
-	}
-	else if (index>0) {
-		typeSelected = true;
-		previous_type = content_tag;
-	}
+			let spantext = obj['Length'] + ' ' + obj["Category / Type / Style"] + ' ' + obj["3D / 2.5D / 2D"];
+			return spantext.toLowerCase().includes(content.toLowerCase());
+		}
+	});
+
+	displayMaps(filteredContent);
+
+	filterEnabled = true;
+	previous_content = content_tag;
 	deselect_filter_halloween = false;
 }
 
 function deselect_content_filter() {
-	if (creatorSelected) {
-		let original_main = mainTag.cloneNode(true);
-		let thisMain = document.getElementsByTagName('main')[0];
-		thisMain.remove();
-		mainDiv.appendChild(original_main);
-		sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
-		if (previous_creator!='') {
-			previous_creator.style.backgroundColor='';
-			previous_creator.onmouseenter = function(){};
-			previous_creator.onmouseleave = function(){};
-		}
-		creatorSub.onmouseenter = function (){scrollBack(this)};
-		creatorSub.onmouseleave = function (){};
-		creatorSelected = false;
+	let original_main = mainTag.cloneNode(true);
+	let thisMain = document.getElementsByTagName('main')[0];
+	thisMain.remove();
+	mainDiv.appendChild(original_main);
+	sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
+	if (previous_content!='') {
+		previous_content.style.backgroundColor='';
+		previous_content.onmouseenter = function(){};
+		previous_content.onmouseleave = function(){};
 	}
-	if (typeSelected) {
-		let original_main = mainTag.cloneNode(true);
-		let thisMain = document.getElementsByTagName('main')[0];
-		thisMain.remove();
-		mainDiv.appendChild(original_main);
-		sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
-		if (previous_type!='') {
-			previous_type.style.backgroundColor='';
-			previous_type.onmouseenter = function(){};
-			previous_type.onmouseleave = function(){};
-		}
-		typeSub.onmouseenter = function (){scrollBack(this)};
-		typeSub.onmouseleave = function (){};
-		typeSelected = false;
-	}
-	if (typeSub)
-		typeSub.style.backgroundColor = '';
-	if (creatorSub)
-		creatorSub.style.backgroundColor = '';
+	contentSub.onmouseenter = function (){scrollBack(this)};
+	contentSub.onmouseleave = function (){};
+	filterEnabled = false;
+	contentSub.style.backgroundColor = '';
 	notReverse = false;
 }
 
