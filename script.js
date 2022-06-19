@@ -1,4 +1,4 @@
-var notReverse = true, isHalloween = true, filterEnabled = false, getAlphaMain = true;
+var notReverse = false, isHalloween = true, filterEnabled = false, getAlphaMain = true;
 mainTag = document.getElementsByTagName('main')[0];
 
 function embed(link) {
@@ -29,13 +29,15 @@ creators = new Set();
 lengths = new Set();
 categories = new Set();
 dimensions = new Set();
-var mapsJSON;
+var mapsJSON, halloweenMaps;
 function fetchJSON() {
 	fetch('https://opensheet.elk.sh/11bmvaGVkJtoERDa9Caobigt3s7EsLEpEFqaVB2Gb2Xk/map_data')
 	.then(response=>response.json())
 	.then(data=>{
 		mapsJSON = data;
-		displayMaps(data);
+		mapsJSON.sort((a,b)=>((a['Map Name'].toLowerCase()>b['Map Name'].toLowerCase())?1:(b['Map Name'].toLowerCase()>a['Map Name'].toLowerCase())?-1:0));
+		displayMaps(mapsJSON);
+		halloweenMaps = mapsJSON.filter((map)=>(map['Category / Type / Style'].toLowerCase().includes('halloween')));
 		creators = [...creators].sort().filter(ele => {return ele.length!=0});
 		lengths = [...lengths].sort().filter(ele => {return ele.length!=0});
 		cates = [...categories].filter(ele => {return ele.length!=0});
@@ -103,57 +105,19 @@ function uniqueValuesIgnoreCase(arr) {
 	return [...set]
 }
 
+var sort_btn = document.getElementById('alphaSort')
 function alphaSort() {
-	let oldMain = document.getElementsByTagName('main')[0];
-	mapNames = [];
-	anchs = oldMain.getElementsByTagName('a');
-	sort_btn = document.getElementById('alphaSort')
-
-	for(i=0;i<anchs.length;i++){
-	    mapNames[i]=anchs[i].innerText.trim().toLowerCase()
-	}
-
-	mapNames.sort();
-	
 	if (notReverse) {
 		sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
+		filterEnabled ? displayMaps(filteredContent) : isHalloween ? displayMaps(mapsJSON) : displayMaps(halloweenMaps);
 		notReverse = false;
 	}
 	else{
 		sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down-alt"></i>';
-		mapNames.reverse();
+		reversedMaps = filterEnabled ? [...filteredContent].reverse() : isHalloween ? [...mapsJSON].reverse() : [...halloweenMaps].reverse();
+		displayMaps(reversedMaps);
 		notReverse = true;
 	}
-
-	let histo = {}
-	let skipIters = 0
-	let newMain = document.createElement('main');
-	for(i=0;i<anchs.length;i++){
-		if (mapNames[i] in histo) {
-			histo[mapNames[i]]++;
-		}
-		else{
-			histo[mapNames[i]] = 1;
-		}
-		skipIters = histo[mapNames[i]];
-	    for(j=0;j<anchs.length;j++){
-		    anch = anchs[j]
-		    thisMap = anch.innerText.trim();
-		    article = anch.parentNode.parentNode.cloneNode(true);
-	        if(mapNames[i]==thisMap.toLowerCase()){
-	        	if (skipIters>1) {
-	        		skipIters--;
-	        		continue;
-	        	}
-		        newMain.appendChild(article);
-	            break;
-	        }
-	    }
-	}
-	if (getAlphaMain) {mainTag = newMain.cloneNode(true);getAlphaMain=false;}
-	mainDiv = oldMain.parentNode;
-	oldMain.remove();
-	mainDiv.appendChild(newMain)
 }
 
 function apply_halloween_theme() {
@@ -216,21 +180,15 @@ function animate_spider_upward() {
 	webthread.style.height = '13%'
 }
 
-deselect_filter_halloween = true;
+var deselect_filter_halloween = true;
 function halloweenSort() {
 	if (!deselect_filter_halloween) {
-		deselect_content_filter();
+		deselect_content_filter(true);
 	}
-
-	let oldMain = document.getElementsByTagName('main')[0];
-	let halloweenMaps = oldMain.getElementsByClassName('halloween-map');
-	let newMain = document.createElement('main');
 
 	if (isHalloween) {
 		apply_halloween_theme();
-		for (var i = 0; i < halloweenMaps.length; i++) {
-			newMain.appendChild(halloweenMaps[i].cloneNode(true));
-		}
+		!notReverse ? displayMaps(halloweenMaps) : displayMaps([...halloweenMaps].reverse());
 		isHalloween = false;
 
 		spiderWebDiv = document.createElement('div');
@@ -251,44 +209,24 @@ function halloweenSort() {
 	}
 	else{
 		remove_halloween_theme();
-		newMain = mainTag;
+		displayMaps(mapsJSON);
 		isHalloween = true;
 		clearInterval(spiderInterval);
 		document.getElementById('spiderWebDiv').remove();
 		notReverse = false;
 		document.getElementById('alphaSort').innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
 	}
-
-	oldMain.remove();
-	mainDiv.appendChild(newMain)
 }
-
-spans = mainTag.getElementsByTagName('span');
 
 creators_lc = [];
 lengths_lc = [];
 categories_lc = [];
 dimensions_lc = [];
 function content_list() {
-	for (var i = 0; i < creators.length; i++) {
-		creators_lc[i] = creators[i].toLowerCase();
-	}
-	creators_lc.sort();
-
-	for (var i = 0; i < lengths.length; i++) {
-		lengths_lc[i] = lengths[i].toLowerCase();
-	}
-	lengths_lc.sort();
-
-	for (var i = 0; i < categories.length; i++) {
-		categories_lc[i] = categories[i].toLowerCase();
-	}
-	categories_lc.sort();
-
-	for (var i = 0; i < dimensions.length; i++) {
-		dimensions_lc[i] = dimensions[i].toLowerCase();
-	}
-	dimensions_lc.sort();
+	creators_lc = creators.map((ele)=>{return ele.toLowerCase()}).sort();
+	lengths_lc = lengths.map((ele)=>{return ele.toLowerCase()}).sort();
+	categories_lc = categories.map((ele)=>{return ele.toLowerCase()}).sort();
+	dimensions_lc = dimensions.map((ele)=>{return ele.toLowerCase()}).sort();
 }
 
 function add_subMenu_content(content, lc, index) {
@@ -349,11 +287,8 @@ function filter_by_content(content_tag, index) {
 	deselect_filter_halloween = false;
 }
 
-function deselect_content_filter() {
-	let original_main = mainTag.cloneNode(true);
-	let thisMain = document.getElementsByTagName('main')[0];
-	thisMain.remove();
-	mainDiv.appendChild(original_main);
+function deselect_content_filter(fromSort = false) {
+	if (!fromSort) displayMaps(mapsJSON);
 	sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
 	if (previous_content!='') {
 		previous_content.style.backgroundColor='';
@@ -425,5 +360,4 @@ setTimeout(function(){
 	add_subMenu_content(lengths,lengths_lc,1);
 	add_subMenu_content(categories,categories_lc,2);
 	add_subMenu_content(dimensions,dimensions_lc,3);
-	alphaSort();
 }, 1000);
