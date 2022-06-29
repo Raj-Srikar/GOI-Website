@@ -101,6 +101,20 @@
         padding: 9px 14px;
       }
 
+      #search-bar{
+        margin: 0 !important;
+        padding: 5px !important;
+      }
+
+      #search{
+        font-size: 2vw;
+        padding-left: 5vw;
+      }
+
+      #search-bar i{
+        font-size: 2vw;
+      }
+
     /* WebPage Main Content */
 
       main{

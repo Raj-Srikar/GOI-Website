@@ -1,4 +1,4 @@
-var notReverse = false, isHalloween = true, filterEnabled = false, getAlphaMain = true;
+var isReverse = false, isHalloween = true, filterEnabled = false, getAlphaMain = true;
 mainTag = document.getElementsByTagName('main')[0];
 
 function embed(link) {
@@ -107,16 +107,16 @@ function uniqueValuesIgnoreCase(arr) {
 
 var sort_btn = document.getElementById('alphaSort')
 function alphaSort() {
-	if (notReverse) {
+	if (isReverse) {
 		sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
-		filterEnabled ? displayMaps(filteredContent) : isHalloween ? displayMaps(mapsJSON) : displayMaps(halloweenMaps);
-		notReverse = false;
+		searchedContent ? displayMaps(searchedContent) : filterEnabled ? displayMaps(filteredContent) : isHalloween ? displayMaps(mapsJSON) : displayMaps(halloweenMaps);
+		isReverse = false;
 	}
 	else{
 		sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down-alt"></i>';
-		reversedMaps = filterEnabled ? [...filteredContent].reverse() : isHalloween ? [...mapsJSON].reverse() : [...halloweenMaps].reverse();
+		reversedMaps =  searchedContent ? [...searchedContent].reverse() : filterEnabled ? [...filteredContent].reverse() : isHalloween ? [...mapsJSON].reverse() : [...halloweenMaps].reverse();
 		displayMaps(reversedMaps);
-		notReverse = true;
+		isReverse = true;
 	}
 }
 
@@ -137,6 +137,7 @@ function apply_halloween_theme() {
 		navATags[i].className = "scythes"
 	}
 	document.getElementById('filterBy').style = 'display:none';
+	document.getElementById('search-bar').style = 'display:none';
 	let alphaSortTag = document.getElementById('alphaSort');
 	alphaSortTag.style = 'box-shadow: rgb(146 185 70) 0px 0px 10px 2px;color: limegreen;border: 1px solid limegreen; background-color:black';
 	alphaSortTag.onmouseenter = function(){this.style.boxShadow = '#fbff00 0px 0px 10px 2px';this.style.color = '#ccff00';this.style.border = '1px solid yellowgreen';};
@@ -160,6 +161,9 @@ function remove_halloween_theme() {
 		navATags[i].className = "";
 	}
 	document.getElementById('filterBy').style = '';
+	document.getElementById('search-bar').style = '';
+	search.value = '';
+	searchedContent = '';
 	let alphaSortTag = document.getElementById('alphaSort');
 	alphaSortTag.style = '';
 	alphaSortTag.onmouseenter = function(){};
@@ -188,7 +192,7 @@ function halloweenSort() {
 
 	if (isHalloween) {
 		apply_halloween_theme();
-		!notReverse ? displayMaps(halloweenMaps) : displayMaps([...halloweenMaps].reverse());
+		!isReverse ? displayMaps(halloweenMaps) : displayMaps([...halloweenMaps].reverse());
 		isHalloween = false;
 
 		spiderWebDiv = document.createElement('div');
@@ -213,7 +217,7 @@ function halloweenSort() {
 		isHalloween = true;
 		clearInterval(spiderInterval);
 		document.getElementById('spiderWebDiv').remove();
-		notReverse = false;
+		isReverse = false;
 		document.getElementById('alphaSort').innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
 	}
 }
@@ -248,7 +252,7 @@ function add_subMenu_content(content, lc, index) {
 var previous_content='', contentSub = false;
 function filter_by_content(content_tag, index) {
 	sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
-	notReverse = false;
+	isReverse = false;
 	let subs = document.getElementsByClassName('sub');
 	for (var i = 0; i < subs.length; i++) {
 		subs[i].style.backgroundColor='';
@@ -279,6 +283,9 @@ function filter_by_content(content_tag, index) {
 			return spantext.toLowerCase().includes(content.toLowerCase());
 		}
 	});
+	
+	search.value = '';
+	searchedContent = '';
 
 	displayMaps(filteredContent);
 
@@ -299,7 +306,9 @@ function deselect_content_filter(fromSort = false) {
 	contentSub.onmouseleave = function (){};
 	filterEnabled = false;
 	contentSub.style.backgroundColor = '';
-	notReverse = false;
+	isReverse = false;
+	search.value = '';
+	searchedContent = '';
 }
 
 function scrollBack(sub) {
@@ -361,3 +370,85 @@ setTimeout(function(){
 	add_subMenu_content(categories,categories_lc,2);
 	add_subMenu_content(dimensions,dimensions_lc,3);
 }, 1000);
+
+search=document.getElementById('search');
+searchIcon = document.querySelector('#search-bar i');
+searchedContent = '';
+search.addEventListener('keyup',(e) =>{
+    let searchString = e.target.value.trim().toLowerCase();
+    if (searchString.length <= 2){
+    	search.style = '';
+    	searchIcon.style.color = '';
+    	if (document.getElementsByTagName('article').length != mapsJSON.length && !filterEnabled && !isReverse){
+    		displayMaps(mapsJSON);
+			searchedContent = '';
+    	}
+    	else if (filterEnabled) {
+    		if (isReverse) {
+	    		displayMaps(reversedMaps);
+	    		reversedMaps = [...filteredContent].reverse();
+			}
+			else
+	    		displayMaps(filteredContent);
+			searchedContent = '';
+    	}
+    	else if (isReverse) {
+    		displayMaps(reversedMaps);
+    		reversedMaps = [...mapsJSON].reverse();
+    		searchedContent = '';	
+    	}
+    }
+    else{
+    	if (!filterEnabled && !isReverse) {
+		    searchedContent = mapsJSON.filter((map) => {
+		        return map['Map Name'].toLowerCase().includes(searchString);
+		    });
+		}
+		else if (filterEnabled) {
+			searchedContent = filteredContent.filter((map) => {
+		        return map['Map Name'].toLowerCase().includes(searchString);
+		    });
+		    if (isReverse)
+		    	searchedContent = [...filteredContent].reverse().filter((map) => {
+			        return map['Map Name'].toLowerCase().includes(searchString);
+			    });
+		}
+		else if (isReverse) {
+			searchedContent = reversedMaps.filter((map) => {
+		        return map['Map Name'].toLowerCase().includes(searchString);
+		    });
+		}
+	    if (searchedContent.length == 0) {
+	    	searchIcon.style.color = '#dd2929';
+	    	search.style = 'background-color:#ffe2e2;color:#a30000;';
+	    	if (document.getElementsByTagName('article').length != mapsJSON.length && !filterEnabled){
+	    		displayMaps(mapsJSON);
+				searchedContent = '';
+	    	}
+	    	else if (filterEnabled) {
+	    		if (isReverse) {
+		    		displayMaps(reversedMaps);
+		    		reversedMaps = [...filteredContent].reverse();
+	    		}
+	    		else
+		    		displayMaps(filteredContent);
+				searchedContent = '';
+	    	}
+	    	else if (isReverse) {
+	    		displayMaps(reversedMaps);
+	    		reversedMaps = [...mapsJSON].reverse();
+	    		searchedContent = '';	
+	    	}
+	    }
+	    else{
+		    displayMaps(searchedContent);
+		    if (isReverse) {
+		    	searchedContent = mapsJSON.filter((map) => {
+			        return map['Map Name'].toLowerCase().includes(searchString);
+			    });
+		    }
+	    	search.style = '';
+	    	searchIcon.style.color = '';
+	    }
+	}
+});

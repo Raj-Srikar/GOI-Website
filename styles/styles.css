@@ -279,6 +279,37 @@ body {
       border-radius: 5px 5px 0px 0px;
     }
 
+  /* Search Bar */
+
+    #search-bar{
+      display: inline-block;
+      margin: 20px 10px;
+    }
+
+    #search{
+      padding: 10px 15px 10px 40px;
+      width: 25vw;
+      font-size: 18px;
+      color: #006382;
+      background-color: #d0fbf2;
+      border-radius: 5px;
+      border: 1px solid darkblue;
+      display: inline;
+      outline-width: 0;
+      height: 18px;
+    }
+
+    ::placeholder{
+      color: #0099c7;
+    }
+
+    #search-bar i{
+      position: absolute;
+      font-size: 18px;
+      padding: 12px;
+      color: #2e829b;
+    }
+
 
 /* WebPage Main Content */
 

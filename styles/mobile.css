@@ -52,6 +52,7 @@
 
       #views{
         margin-left: 0;
+        display: inline;
       }
 
       #views>span,#views>div{
@@ -92,6 +93,21 @@
 
       .sub-menu>div{
         padding: 8px 14px;
+      }
+
+      #search-bar{
+        margin: -5px 0 20px !important;
+        padding: 0 5px !important;
+      }
+
+      #search{
+        width: 78vw;
+        font-size: 4vw;
+        padding-left: 10vw;
+      }
+
+      #search-bar i{
+        font-size: 4vw;
       }
 
     /* WebPage Main Content */
