@@ -37,7 +37,7 @@ function fetchJSON() {
 		mapsJSON = data;
 		mapsJSON.sort((a,b)=>((a['Map Name'].toLowerCase()>b['Map Name'].toLowerCase())?1:(b['Map Name'].toLowerCase()>a['Map Name'].toLowerCase())?-1:0));
 		displayMaps(mapsJSON);
-		halloweenMaps = mapsJSON.filter((map)=>(map['Category / Type / Style'].toLowerCase().includes('halloween')));
+		halloweenMaps = mapsJSON.filter((map)=>(map['Tags'].toLowerCase().includes('halloween')));
 		creators = [...creators].sort().filter(ele => {return ele.length!=0});
 		lengths = [...lengths].sort().filter(ele => {return ele.length!=0});
 		cates = [...categories].filter(ele => {return ele.length!=0});
@@ -60,7 +60,7 @@ function fetchJSON() {
 
 function displayMaps(maps) {
 	let htmlString = maps.map((map)=>{
-		let isHalloweenMap = map['Category / Type / Style'].includes('Halloween');
+		let isHalloweenMap = map['Tags'].includes('Halloween');
 		string = `
 		<article ${isHalloweenMap ? 'class="halloween-map" title="Halloween Map"' : ''}>
 			<div>`;
@@ -74,7 +74,7 @@ function displayMaps(maps) {
 		string += `
 			<p><b>Creator:</b><span>${map['Author']}</span>
 				<br><b>Map Type:</b><span>`;
-		mapType = map["Length"] + ' ' + map["Category / Type / Style"] + ' ' + map["3D / 2.5D / 2D"];
+		mapType = map["Length"] + ' ' + map["Tags"] + ' ' + map["3D / 2.5D / 2D"];
 		string += `${mapType.trim().length !== 0 ? mapType : 'Not Specified'}</span></p>`;
 		if (isHalloweenMap) string += `<img src="images/halloween/jacko.png" class="jacko">`;
 		string += `
@@ -83,7 +83,7 @@ function displayMaps(maps) {
 		if (mainTag.innerHTML.trim() == '') {
 			creators.add(map["Author"]);
 			lengths.add(map["Length"]);
-			categories.add(map["Category / Type / Style"]);
+			categories.add(map["Tags"]);
 			dimensions.add(map["3D / 2.5D / 2D"]);
 		}
 		return string;
@@ -279,7 +279,7 @@ function filter_by_content(content_tag, index) {
 		if (index==0)
 			return content == obj['Author']
 		else{
-			let spantext = obj['Length'] + ' ' + obj["Category / Type / Style"] + ' ' + obj["3D / 2.5D / 2D"];
+			let spantext = obj['Length'] + ' ' + obj["Tags"] + ' ' + obj["3D / 2.5D / 2D"];
 			return spantext.toLowerCase().includes(content.toLowerCase());
 		}
 	});
