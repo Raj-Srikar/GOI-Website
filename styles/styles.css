@@ -343,6 +343,7 @@ body {
     box-shadow: 0px 0px 10px 2px #45aab2;
     background: linear-gradient(#00000000, #00000000), url(../images/Menu.png);
     background-position: center;
+    word-wrap: break-word;
     transition: 0.5s;
   }
 
