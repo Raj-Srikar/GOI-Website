@@ -27,7 +27,6 @@ function embed(link) {
 
 creators = new Set();
 lengths = new Set();
-categories = new Set();
 dimensions = new Set();
 var mapsJSON, halloweenMaps;
 function fetchJSON() {
@@ -38,24 +37,10 @@ function fetchJSON() {
 		mapsJSON.sort((a,b)=>((a['Map Name'].toLowerCase()>b['Map Name'].toLowerCase())?1:(b['Map Name'].toLowerCase()>a['Map Name'].toLowerCase())?-1:0));
 		displayMaps(mapsJSON);
 		halloweenMaps = mapsJSON.filter((map)=>{if(map['Comments / Notes']) return map['Comments / Notes'].toLowerCase().includes('halloween')});
-		creators = [...creators].sort().filter(ele => {return ele.length!=0});
-		lengths = [...lengths].sort().filter(ele => {return ele.length!=0});
-		cates = [...categories].filter(ele => {return ele.length!=0});
-		categories.clear();
-		for(i=0; i<cates.length; i++){
-		    if(cates[i].includes(',')){
-		        deli = cates[i].split(', ')
-		        for(j=0; j<deli.length; j++)
-		            categories.add(deli[j])
-		    }
-		    else
-		        categories.add(cates[i])
-		}
-		cates_sorted = [...categories].sort().filter(ele => {return !ele.startsWith('(')});
-		categories = uniqueValuesIgnoreCase(cates_sorted);
-		categories.splice(categories.indexOf('Halloween'), 1);
+		creators = [...creators].sort((b,c)=>b.toLowerCase()<c.toLowerCase()?-1:1).filter(ele => ele.length);
+		lengths = [...lengths].sort((b,c)=>b.toLowerCase()<c.toLowerCase()?-1:1).filter(ele => ele.length);
 		lengths.splice(lengths.indexOf('NA'), 1);
-		dimensions = [...dimensions].sort().filter(ele => {return ele.length!=0});
+		dimensions = [...dimensions].sort((b,c)=>b.toLowerCase()<c.toLowerCase()?-1:1).filter(ele => ele.length);
 	});
 }
 
@@ -85,7 +70,6 @@ function displayMaps(maps) {
 		if (mainTag.innerHTML.trim() == '') {
 			if(!map["Author"].includes('&'))creators.add(map["Author"]);
 			lengths.add(map["Length"]);
-			// categories.add(map["Tags"]);
 			dimensions.add(map["Type"]);
 		}
 		return string;
@@ -224,28 +208,13 @@ function halloweenSort() {
 	}
 }
 
-creators_lc = [];
-lengths_lc = [];
-categories_lc = [];
-dimensions_lc = [];
-function content_list() {
-	creators_lc = creators.map((ele)=>{return ele.toLowerCase()}).sort();
-	lengths_lc = lengths.map((ele)=>{return ele.toLowerCase()}).sort();
-	categories_lc = categories.map((ele)=>{return ele.toLowerCase()}).sort();
-	dimensions_lc = dimensions.map((ele)=>{return ele.toLowerCase()}).sort();
-}
 
-function add_subMenu_content(content, lc, index) {
+function add_subMenu_content(content, index) {
 	let subMenu = document.getElementsByClassName('sub-menu')[index];
-	for (i = 0; i < lc.length; i++) {
+	for (i = 0; i < content.length; i++) {
 		let subDiv = document.createElement('div');
 		subDiv.onclick = function(){filter_by_content(this, index)}
-		for (var j = 0; j < content.length; j++) {
-			if (lc[i]==content[j].toLowerCase()){
-				subDiv.innerHTML = content[j];
-				break;
-			}
-		}
+		subDiv.innerHTML = content[i];
 		subMenu.appendChild(subDiv);
 	}
 }
@@ -359,19 +328,21 @@ function scrollFunction() {
 var scrollToTop = document.getElementById("stt");
 window.onscroll = function() {scrollFunction()};
 
+async function waitForMapTiles(callback){
+    if (document.getElementsByTagName('main')[0].childNodes.length>1) {
+        callback();
+    } else {
+        setTimeout(function () {
+            waitForMapTiles(callback);
+        }, 1000);
+    }
+}
 fetchJSON();
-setTimeout(function(){
-	if(document.getElementsByTagName('main')[0].childNodes.length==1){
-	    location.reload();
-	    console.log('Reloading...');
-	    return;
-	}
-	content_list();
-	add_subMenu_content(creators,creators_lc,0);
-	add_subMenu_content(lengths,lengths_lc,1);
-	add_subMenu_content(categories,categories_lc,2);
-	add_subMenu_content(dimensions,dimensions_lc,3);
-}, 1000);
+waitForMapTiles(()=>{
+	add_subMenu_content(creators,0);
+	add_subMenu_content(lengths,1);
+	add_subMenu_content(dimensions,2);
+});
 
 search=document.getElementById('search');
 searchIcon = document.querySelector('#search-bar i');
