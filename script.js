@@ -37,7 +37,7 @@ function fetchJSON() {
 		mapsJSON = data;
 		mapsJSON.sort((a,b)=>((a['Map Name'].toLowerCase()>b['Map Name'].toLowerCase())?1:(b['Map Name'].toLowerCase()>a['Map Name'].toLowerCase())?-1:0));
 		displayMaps(mapsJSON);
-		halloweenMaps = mapsJSON.filter((map)=>(map['Tags'].toLowerCase().includes('halloween')));
+		halloweenMaps = mapsJSON.filter((map)=>{if(map['Comments / Notes']) return map['Comments / Notes'].toLowerCase().includes('halloween')});
 		creators = [...creators].sort().filter(ele => {return ele.length!=0});
 		lengths = [...lengths].sort().filter(ele => {return ele.length!=0});
 		cates = [...categories].filter(ele => {return ele.length!=0});
@@ -54,13 +54,15 @@ function fetchJSON() {
 		cates_sorted = [...categories].sort().filter(ele => {return !ele.startsWith('(')});
 		categories = uniqueValuesIgnoreCase(cates_sorted);
 		categories.splice(categories.indexOf('Halloween'), 1);
+		lengths.splice(lengths.indexOf('NA'), 1);
 		dimensions = [...dimensions].sort().filter(ele => {return ele.length!=0});
 	});
 }
 
 function displayMaps(maps) {
 	let htmlString = maps.map((map)=>{
-		let isHalloweenMap = map['Tags'].includes('Halloween');
+		if (map['Comments / Notes'] && map['Comments / Notes'].includes('coming soon')) return '';
+		let isHalloweenMap = map['Comments / Notes'] ? map['Comments / Notes'].toLowerCase().includes('halloween') : map['Comments / Notes'];
 		string = `
 		<article ${isHalloweenMap ? 'class="halloween-map" title="Halloween Map"' : ''}>
 			<div>`;
@@ -74,17 +76,17 @@ function displayMaps(maps) {
 		string += `
 			<p><b>Creator:</b><span>${map['Author']}</span>
 				<br><b>Map Type:</b><span>`;
-		mapType = map["Length"] + ' ' + map["Tags"] + ' ' + map["3D / 2.5D / 2D"];
+		mapType = (map["Length"].includes('NA') ? '' : map["Length"]) + ' ' /*+ map["Tags"] + ' ' */+ map["Type"];
 		string += `${mapType.trim().length !== 0 ? mapType : 'Not Specified'}</span></p>`;
 		if (isHalloweenMap) string += `<img src="images/halloween/jacko.png" class="jacko">`;
 		string += `
 		</article>
 		`;
 		if (mainTag.innerHTML.trim() == '') {
-			creators.add(map["Author"]);
+			if(!map["Author"].includes('&'))creators.add(map["Author"]);
 			lengths.add(map["Length"]);
-			categories.add(map["Tags"]);
-			dimensions.add(map["3D / 2.5D / 2D"]);
+			// categories.add(map["Tags"]);
+			dimensions.add(map["Type"]);
 		}
 		return string;
 	}).join('');
@@ -277,9 +279,9 @@ function filter_by_content(content_tag, index) {
 
 	filteredContent = mapsJSON.filter(obj => {
 		if (index==0)
-			return content == obj['Author']
+			return obj['Author'].includes(content);
 		else{
-			let spantext = obj['Length'] + ' ' + obj["Tags"] + ' ' + obj["3D / 2.5D / 2D"];
+			let spantext = obj['Length'] + ' '/* + obj["Tags"] + ' ' */+ obj["Type"];
 			return spantext.toLowerCase().includes(content.toLowerCase());
 		}
 	});
