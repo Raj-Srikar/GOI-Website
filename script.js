@@ -30,7 +30,7 @@ lengths = new Set();
 dimensions = new Set();
 var mapsJSON, halloweenMaps;
 function fetchJSON() {
-	fetch('https://opensheet.elk.sh/11bmvaGVkJtoERDa9Caobigt3s7EsLEpEFqaVB2Gb2Xk/map_data')
+	fetch('https://opensheet.elk.sh/11RYN1a8vMGeRxP3kmC6BMLXVMA0TxTA6RFtjCBuwRxw/Maps')
 	.then(response=>response.json())
 	.then(data=>{
 		mapsJSON = data;
@@ -46,7 +46,7 @@ function fetchJSON() {
 
 function displayMaps(maps) {
 	let htmlString = maps.map((map)=>{
-		if (map['Comments / Notes'] && map['Comments / Notes'].includes('coming soon')) return '';
+		if (!map['Download']) return '';
 		let isHalloweenMap = map['Comments / Notes'] ? map['Comments / Notes'].toLowerCase().includes('halloween') : map['Comments / Notes'];
 		string = `
 		<article ${isHalloweenMap ? 'class="halloween-map" title="Halloween Map"' : ''}>
@@ -113,8 +113,8 @@ function apply_halloween_theme() {
 	let halloweenButton = document.getElementById('halloweenSort');
 	let navATags = headerTag.getElementsByTagName('a');
 
-	bodyTag.style = "background-image: linear-gradient(#00000033, #00000033), url(https://www.wallpapertip.com/wmimgs/67-676387_halloween-wallpapers-hd-3-halloween-night-wallpaper-hd.jpg);";
-	headerTag.style = "background-image: linear-gradient(to left, #00000055, #00000055), url(https://cdn.wallpapersafari.com/49/15/H0xLQG.jpg);background-position-y: 90%;box-shadow: 0px 5px 20px 5px rgb(255 94 0 / 30%);";
+	bodyTag.style = "background-image: linear-gradient(#00000033, #00000033), url(/images/halloween/halloween-bg.jpg);";
+	headerTag.style = "background-image: linear-gradient(to left, #00000055, #00000055), url(/images/halloween/header-bg.jpg);background-position-y: 90%;box-shadow: 0px 5px 20px 5px rgb(255 94 0 / 30%);";
 	tagLine = "color: #e2ddd5;";
 	halloweenButton.style = "color:red;background-color: black;border: 2px solid red;box-shadow: 0px 0px 10px 5px #b94646;";
 	halloweenButton.onmouseenter = function(){halloweenButton.style.color='#ffe002';halloweenButton.style.boxShadow='orangered 0px 0px 10px 5px'};
