@@ -404,21 +404,60 @@ body {
     padding-left: 10px;
   }
 
+  .disable {
+    display: none !important;
+  }
+
 
 /* Halloween Theme */
+  .hallo-body {
+    background-image: linear-gradient(#00000033, #00000033), url(../images/halloween/halloween-bg.jpg);
+  }
 
-  .scythes{
+  .hallo-header {
+    background-image: linear-gradient(to left, #00000055, #00000055), url(../images/halloween/header-bg.jpg);
+    background-position-y: 90%;
+    box-shadow: 0px 5px 20px 5px rgb(255 94 0 / 30%);
+  }
+
+  .hallo-tagline {
+    color: #e2ddd5;
+  }
+
+  .scythes>a{
     background-image: url(../images/halloween/scythe.png);
     background-size: 100%;
   }
 
+  #alphaSort.hallo-alpha {
+    box-shadow: rgb(146 185 70) 0px 0px 10px 2px;
+    color: limegreen;
+    border: 1px solid limegreen;
+    background-color:black;
+  }
+  #alphaSort.hallo-alpha:hover {
+    box-shadow: #fbff00 0px 0px 10px 2px;
+    color: #ccff00;
+    border: 1px solid 1px solid yellowgreen;
+  }
+
+  #halloweenSort.hallo-btn {
+    color:red;
+    background-color: black;
+    border: 2px solid red;
+    box-shadow: 0px 0px 10px 5px #b94646;
+  }
+  #halloweenSort.hallo-btn:hover {
+    color:#ffe002;
+    box-shadow: orangered 0px 0px 10px 5px;
+  }
+  
   .halloween-map{
     border: 2px solid #b62828;
     box-shadow: 0px 0px 10px 2px #b94646;
     background: linear-gradient(#00000000, #00000000), url(../images/halloween/RedSmoke.png);
     background-position: center;
   }
-
   .halloween-map:hover{
     background: linear-gradient(#ffffff11, #ffffff11), url(../images/halloween/RedSmoke.png);
   }
@@ -484,10 +523,10 @@ body {
   }
 
   #spider{
-    transition: 5s;
     top: 12%;
     right: 3.35%;
     width: 5%;
+    animation: spider-anim 20s 10s infinite;
   }
 
   #webthread{
@@ -497,8 +536,23 @@ body {
     right: 5%;
     width: 2px;
     height: 13%;
-    transition:5s;
+    animation: web-anim 20s 10s infinite;
     z-index: 2;
+  }
+
+  @keyframes spider-anim {
+    from {top: 12%;}
+    25% {top: 52%;}
+    50% {top: 52%;}
+    75% {top: 12%;}
+    to {top: 12%;}
+  }
+  @keyframes web-anim {
+    from {height: 13%;}
+    25% {height: 53%;}
+    50% {height: 53%;}
+    75% {height: 13%;}
+    to {height: 13%;}
   }
 
 

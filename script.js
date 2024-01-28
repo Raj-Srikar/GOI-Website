@@ -106,54 +106,22 @@ function alphaSort() {
 	}
 }
 
-function apply_halloween_theme() {
+function toggle_halloween_theme() {
 	let bodyTag = document.getElementsByTagName('body')[0];
 	let headerTag = document.getElementsByTagName('header')[0];
 	let tagLine = headerTag.getElementsByTagName('p')[0];
 	let halloweenButton = document.getElementById('halloweenSort');
-	let navATags = headerTag.getElementsByTagName('a');
+	let nav = headerTag.querySelector('nav');
 
-	bodyTag.style = "background-image: linear-gradient(#00000033, #00000033), url(/images/halloween/halloween-bg.jpg);";
-	headerTag.style = "background-image: linear-gradient(to left, #00000055, #00000055), url(/images/halloween/header-bg.jpg);background-position-y: 90%;box-shadow: 0px 5px 20px 5px rgb(255 94 0 / 30%);";
-	tagLine = "color: #e2ddd5;";
-	halloweenButton.style = "color:red;background-color: black;border: 2px solid red;box-shadow: 0px 0px 10px 5px #b94646;";
-	halloweenButton.onmouseenter = function(){halloweenButton.style.color='#ffe002';halloweenButton.style.boxShadow='orangered 0px 0px 10px 5px'};
-	halloweenButton.onmouseleave = function(){halloweenButton.style.color='red';halloweenButton.style.boxShadow='#b94646 0px 0px 10px 5px'};
-	for (var i = 0; i < navATags.length; i++) {
-		navATags[i].className = "scythes"
-	}
-	document.getElementById('filterBy').style = 'display:none';
-	document.getElementById('search-bar').style = 'display:none';
+	bodyTag.classList.toggle('hallo-body');
+	headerTag.classList.toggle('hallo-header');
+	tagLine.classList.toggle('hallo-tagline');
+	halloweenButton.classList.toggle('hallo-btn');
+	nav.classList.toggle("scythes");
+	document.getElementById('filterBy').classList.toggle('disable');
+	document.getElementById('search-bar').classList.toggle('disable');
 	let alphaSortTag = document.getElementById('alphaSort');
-	alphaSortTag.style = 'box-shadow: rgb(146 185 70) 0px 0px 10px 2px;color: limegreen;border: 1px solid limegreen; background-color:black';
-	alphaSortTag.onmouseenter = function(){this.style.boxShadow = '#fbff00 0px 0px 10px 2px';this.style.color = '#ccff00';this.style.border = '1px solid yellowgreen';};
-	alphaSortTag.onmouseleave = function(){this.style.boxShadow = 'rgb(146 185 70) 0px 0px 10px 2px';this.style.color = 'limegreen';this.style.border = '1px solid limegreen';};
-}
-
-function remove_halloween_theme() {
-	let bodyTag = document.getElementsByTagName('body')[0];
-	let headerTag = document.getElementsByTagName('header')[0];
-	let tagLine = headerTag.getElementsByTagName('p')[0];
-	let halloweenButton = document.getElementById('halloweenSort');
-	let navATags = headerTag.getElementsByTagName('a');
-
-	bodyTag.style = "";
-	headerTag.style = "";
-	tagLine = "";
-	halloweenButton.style = "";
-	halloweenButton.onmouseenter = function(){};
-	halloweenButton.onmouseleave = function(){};
-	for (var i = 0; i < navATags.length; i++) {
-		navATags[i].className = "";
-	}
-	document.getElementById('filterBy').style = '';
-	document.getElementById('search-bar').style = '';
-	search.value = '';
-	searchedContent = '';
-	let alphaSortTag = document.getElementById('alphaSort');
-	alphaSortTag.style = '';
-	alphaSortTag.onmouseenter = function(){};
-	alphaSortTag.onmouseleave = function(){};
+	alphaSortTag.classList.toggle('hallo-alpha');
 }
 
 function animate_spider_downward() {
@@ -176,35 +144,21 @@ function halloweenSort() {
 		deselect_content_filter(true);
 	}
 
+	toggle_halloween_theme();
+	let spiderWebDiv = document.getElementById('spiderWebDiv')
+	spiderWebDiv.classList.toggle('disable');
 	if (isHalloween) {
-		apply_halloween_theme();
 		!isReverse ? displayMaps(halloweenMaps) : displayMaps([...halloweenMaps].reverse());
 		isHalloween = false;
-
-		spiderWebDiv = document.createElement('div');
-		spiderWebDiv.innerHTML = '<img src="images/halloween/web-top-left.png" style="top:0;left:0"><img src="images/halloween/web-bottom-left.png" style="bottom:0;left:0"><img src="images/halloween/web-bottom-right.png" style="bottom:0;right:0"><img id="toprightweb" src="images/halloween/top-right-web.png" style="top:0;right:0;"><img src="images/halloween/spida.png" id="spider"><span id="webthread"></span>';
-		spiderWebDiv.setAttribute('id', 'spiderWebDiv');
-		document.getElementsByTagName('body')[0].appendChild(spiderWebDiv);
-		spiderAbove = true;
-		spiderInterval = setInterval(function() {
-				if (spiderAbove){
-					animate_spider_downward();
-					spiderAbove = false;
-				}
-				else{
-					animate_spider_upward();
-					spiderAbove = true;
-				}
-			}, 10000);
+		spiderWebDiv.innerHTML += '<img src="images/halloween/spida.png" id="spider"><span id="webthread"></span>';
 	}
 	else{
-		remove_halloween_theme();
 		displayMaps(mapsJSON);
 		isHalloween = true;
-		clearInterval(spiderInterval);
-		document.getElementById('spiderWebDiv').remove();
+		document.getElementById('spider').remove();
+		document.getElementById('webthread').remove();
 		isReverse = false;
-		document.getElementById('alphaSort').innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
+		document.querySelector('#alphaSort>i').className = 'fas fa-sort-alpha-down';
 	}
 }
 
