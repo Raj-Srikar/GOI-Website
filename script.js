@@ -1,4 +1,4 @@
-var isReverse = false, isHalloween = true, filterEnabled = false, getAlphaMain = true;
+var isReverse = false, isHalloween = true, filterEnabled = false, getAlphaMain = true,
 mainTag = document.getElementsByTagName('main')[0];
 
 function embed(link) {
@@ -25,10 +25,10 @@ function embed(link) {
 	return embeded;
 }
 
-creators = new Set();
-lengths = new Set();
-dimensions = new Set();
-var mapsJSON, halloweenMaps;
+var creators = new Set(),
+lengths = new Set(),
+dimensions = new Set(),
+mapsJSON, halloweenMaps;
 function fetchJSON() {
 	fetch('https://opensheet.elk.sh/11RYN1a8vMGeRxP3kmC6BMLXVMA0TxTA6RFtjCBuwRxw/Maps')
 	.then(response=>response.json())
@@ -47,13 +47,14 @@ function fetchJSON() {
 function displayMaps(maps) {
 	let htmlString = maps.map((map)=>{
 		if (!map['Download']) return '';
-		let isHalloweenMap = map['Comments / Notes'] ? map['Comments / Notes'].toLowerCase().includes('halloween') : map['Comments / Notes'];
+		let isHalloweenMap = map['Comments / Notes'] ? map['Comments / Notes'].toLowerCase().includes('halloween') : map['Comments / Notes'],
+		embedLink = embed(map['Video']);
 		string = `
 		<article ${isHalloweenMap ? 'class="halloween-map" title="Halloween Map"' : ''}>
 			<div>`;
 		string +=
 			map['Video']
-			?`<iframe src="${embed(map['Video'])}" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=${embed(map['Video'])}><img src=https://img.youtube.com/vi/${embed(map['Video']).substr(embed(map['Video']).indexOf('embed/')+6,11)}/hqdefault.jpg><span>▶</span></a>" loading="lazy" allowfullscreen=""></iframe>`
+			?`<iframe src="${embedLink}" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=${embedLink}><img src=https://img.youtube.com/vi/${embedLink.substr(embedLink.indexOf('embed/')+6,11)}/hqdefault.jpg><span>▶</span></a>" loading="lazy" allowfullscreen=""></iframe>`
 			: `<img src="images/noVideo.png">`;
 		string += `</div>
 			<h2 title="Download ${map['Map Name']}"><a href="${map['Download']}" target="_blank">${map['Map Name']}</a></h2>`;
@@ -77,21 +78,8 @@ function displayMaps(maps) {
 	document.getElementsByTagName('main')[0].innerHTML = htmlString;
 }
 
-function uniqueValuesIgnoreCase(arr) {
-	arr_lc = [...(new Set(arr.map(ele => {return ele.toLowerCase()})))];
-	set = new Set();
-	for (var i = 0; i < arr_lc.length; i++) {
-		for (var j = 0; j < arr.length; j++) {
-			if (arr_lc[i]==arr[j].toLowerCase()) {
-				set.add(arr[j]);
-				break;
-			}
-		}
-	}
-	return [...set]
-}
 
-var sort_btn = document.getElementById('alphaSort')
+var sort_btn = document.getElementById('alphaSort');
 function alphaSort() {
 	if (isReverse) {
 		sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
@@ -105,6 +93,7 @@ function alphaSort() {
 		isReverse = true;
 	}
 }
+
 
 function toggle_halloween_theme() {
 	let bodyTag = document.getElementsByTagName('body')[0];
@@ -122,20 +111,6 @@ function toggle_halloween_theme() {
 	document.getElementById('search-bar').classList.toggle('disable');
 	let alphaSortTag = document.getElementById('alphaSort');
 	alphaSortTag.classList.toggle('hallo-alpha');
-}
-
-function animate_spider_downward() {
-	spider = document.getElementById('spider');
-	spider.style.top = '52%';
-	webthread = document.getElementById('webthread');
-	webthread.style.height = '53%'
-}
-
-function animate_spider_upward() {
-	spider = document.getElementById('spider');
-	spider.style.top = '12%';
-	webthread = document.getElementById('webthread');
-	webthread.style.height = '13%'
 }
 
 var deselect_filter_halloween = true;
@@ -173,7 +148,6 @@ function add_subMenu_content(content, index) {
 	}
 }
 
-
 var previous_content='', contentSub = false;
 function filter_by_content(content_tag, index) {
 	sort_btn.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
@@ -181,7 +155,7 @@ function filter_by_content(content_tag, index) {
 	let subs = document.getElementsByClassName('sub');
 	for (var i = 0; i < subs.length; i++) {
 		subs[i].style.backgroundColor='';
-		subs[i].onmouseenter = function(){scrollBack(this)};
+		subs[i].onmouseenter = function(){subMenuScrollBack(this)};
 		subs[i].onmouseleave = function(){};
 	}
 	if (previous_content!='') {
@@ -192,7 +166,7 @@ function filter_by_content(content_tag, index) {
 	content = content_tag.innerText;
 	contentSub = content_tag.parentNode.parentNode;
 	contentSub.style.backgroundColor = '#b4ffc7';
-	contentSub.onmouseenter = function (){this.style.backgroundColor = '#91eaa8';scrollBack(this)};
+	contentSub.onmouseenter = function (){this.style.backgroundColor = '#91eaa8';subMenuScrollBack(this)};
 	contentSub.onmouseleave = function (){this.style.backgroundColor = '#b4ffc7';};
 	
 	content_tag.style.backgroundColor = '#b4ffc7';
@@ -204,7 +178,7 @@ function filter_by_content(content_tag, index) {
 		if (index==0)
 			return obj['Author'].includes(content);
 		else{
-			let spantext = obj['Length'] + ' '/* + obj["Tags"] + ' ' */+ obj["Type"];
+			let spantext = obj['Length'] + ' ' + obj["Type"];
 			return spantext.toLowerCase().includes(content.toLowerCase());
 		}
 	});
@@ -227,7 +201,7 @@ function deselect_content_filter(fromSort = false) {
 		previous_content.onmouseenter = function(){};
 		previous_content.onmouseleave = function(){};
 	}
-	contentSub.onmouseenter = function (){scrollBack(this)};
+	contentSub.onmouseenter = function (){subMenuScrollBack(this)};
 	contentSub.onmouseleave = function (){};
 	filterEnabled = false;
 	contentSub.style.backgroundColor = '';
@@ -236,39 +210,13 @@ function deselect_content_filter(fromSort = false) {
 	searchedContent = '';
 }
 
-function scrollBack(sub) {
+function subMenuScrollBack(sub) {
    sub.childNodes[3].scrollTo(0,0);
 }
 function modifyDisplay(sub) {
    sub.getElementsByClassName('sub-menu')[0].style.display = "";
- }
- var prevScrollpos = window.pageYOffset;
- window.onscroll = function() {
-
- var currentScrollPos = window.pageYOffset;
- subMenus = document.getElementsByClassName("sub-menu");
- subMenus[0].style.display = "";
- subMenus[1].style.display = "";
- if ((prevScrollpos < currentScrollPos)||(prevScrollpos > currentScrollPos)) {
-   subMenus[0].style.display = "none";
-   subMenus[1].style.display = "none";
- }
- prevScrollpos = currentScrollPos;
 }
 
-function mobileNotSupported(){
-    w = screen.width;
-    let bod = document.getElementsByTagName('body')[0];
-    if(w < 400){
-        bod.remove();
-        newBod = document.createElement('body');
-        newBod.innerHTML = 'Mobile Version Of This Website Isn\'t Available As Of Now. Please Consider Switching To PC For Better Experience.';
-        newBod.style = "background-image: url(https://i.imgur.com/CC8vwXy.png);background-size: auto;background-color: #97d6f8;background-position-y: 35%;text-align: center;margin: 95% 10px 0;color: #1e6394;";
-        bod.style.display = 'none';
-        docHtml = document.getElementsByTagName('html')[0];
-        docHtml.appendChild(newBod);
-    }
-}
 
 function scrollFunction() {
 	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
