@@ -93,7 +93,7 @@
         max-height: 155px;
         min-height: 75px;
         font-size: 97%;
-        margin-top: -2.6vh;
+        margin-top: -3.8vh;
         margin-left: 12vw;
       }
 
@@ -109,10 +109,15 @@
       #search{
         font-size: 2vw;
         padding-left: 5vw;
+        height: 2vw;
       }
 
       #search-bar i{
         font-size: 2vw;
+      }
+
+      #total-maps{
+        font-size: 16px;
       }
 
     /* WebPage Main Content */

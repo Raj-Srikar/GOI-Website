@@ -52,11 +52,13 @@
 
       #views{
         margin-left: 0;
-        display: inline;
+        flex-wrap: wrap;
+        height: 100%;
+        padding: 0;
       }
 
       #views>span,#views>div{
-        font-size: 120%;
+        font-size: 100%;
         margin: 20px 5px;
         padding: 7px 13px 6px;
       }
@@ -87,22 +89,27 @@
         max-height: 170px;
         min-height: 75px;
         font-size: 95%;
-        margin-top: -21px;
-        margin-left: 95px;
+        margin-top: -19px;
+        margin-left: 81px;
       }
 
       .sub-menu>div{
         padding: 8px 14px;
       }
 
+      #total-maps{
+        font-size: 15px;
+      }
+
       #search-bar{
         margin: -5px 0 20px !important;
         padding: 0 5px !important;
+        order: 1;
       }
 
       #search{
         width: 78vw;
-        font-size: 4vw;
+        font-size: calc(4vw - 2px);
         padding-left: 10vw;
       }
 
@@ -178,8 +185,8 @@
 
       #stt{
         font-size: 17px;
-        bottom: 10px;
-        right: 10px;
+        bottom: 25px;
+        right: 20px;
         padding: 10px 17px;
       }
 

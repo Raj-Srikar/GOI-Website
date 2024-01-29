@@ -108,7 +108,13 @@ body {
   #views{
     height: 83px;
     user-select: none;
-    margin-left: 20px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+  }
+
+  #views>* {
+    margin: 0 12px;
   }
 
 
@@ -123,7 +129,6 @@ body {
       font-size: 150%;
       font-weight: bold;
       background-color: #195cc1;
-      margin: 20px 10px;
       border-radius: 5px;
       padding: 7px 15px 6px;
       transition: 0.2s;
@@ -149,7 +154,6 @@ body {
       font-size: 150%;
       font-weight: bold;
       background-color: orangered;
-      margin: 20px 10px;
       border-radius: 5px;
       padding: 7px 16px 6px;
       transition: 0.2s;
@@ -172,7 +176,6 @@ body {
       cursor: pointer;
       color: white;
       font-size: 150%;
-      margin: 20px  10px;
       padding: 7px 15px 6px;
       transition: 0.2s;
     }
@@ -281,11 +284,6 @@ body {
 
   /* Search Bar */
 
-    #search-bar{
-      display: inline-block;
-      margin: 20px 10px;
-    }
-
     #search{
       padding: 10px 15px 10px 40px;
       width: 25vw;
@@ -310,6 +308,11 @@ body {
       color: #2e829b;
     }
 
+  /* Total Maps */
+  #total-maps{
+    color: white;
+    margin-left: auto;
+  }
 
 /* WebPage Main Content */
 
@@ -421,7 +424,7 @@ body {
   }
 
   .hallo-tagline {
-    color: #e2ddd5;
+    color: #e2ddd5 !important;
   }
 
   .scythes>a{

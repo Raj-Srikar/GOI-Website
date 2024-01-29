@@ -1,4 +1,5 @@
 var isReverse = false, isHalloween = true, filterEnabled = false, getAlphaMain = true,
+mapsDisplayingNow = [],
 mainTag = document.getElementsByTagName('main')[0];
 
 function embed(link) {
@@ -45,11 +46,14 @@ function fetchJSON() {
 }
 
 function displayMaps(maps) {
+	mapsDisplayingNow = maps;
+	const mapno = mapsDisplayingNow.length;
+	document.querySelector('#total-maps').innerHTML = mapno + ' ' + (mapno == 1 ? 'Map' : 'Maps');
 	let htmlString = maps.map((map)=>{
 		if (!map['Download']) return '';
 		let isHalloweenMap = map['Comments / Notes'] ? map['Comments / Notes'].toLowerCase().includes('halloween') : map['Comments / Notes'],
 		embedLink = embed(map['Video']);
-		string = `
+		let string = `
 		<article ${isHalloweenMap ? 'class="halloween-map" title="Halloween Map"' : ''}>
 			<div>`;
 		string +=
@@ -96,21 +100,16 @@ function alphaSort() {
 
 
 function toggle_halloween_theme() {
-	let bodyTag = document.getElementsByTagName('body')[0];
-	let headerTag = document.getElementsByTagName('header')[0];
-	let tagLine = headerTag.getElementsByTagName('p')[0];
-	let halloweenButton = document.getElementById('halloweenSort');
-	let nav = headerTag.querySelector('nav');
+	document.getElementsByTagName('body')[0].classList.toggle('hallo-body');
+	document.getElementsByTagName('header')[0].classList.toggle('hallo-header');
+	document.querySelector('header p').classList.toggle('hallo-tagline');
+	document.getElementById('halloweenSort').classList.toggle('hallo-btn');
+	document.querySelector('header nav').classList.toggle("scythes");
+	document.querySelector('#total-maps').classList.toggle('hallo-tagline');
+	document.getElementById('alphaSort').classList.toggle('hallo-alpha');
 
-	bodyTag.classList.toggle('hallo-body');
-	headerTag.classList.toggle('hallo-header');
-	tagLine.classList.toggle('hallo-tagline');
-	halloweenButton.classList.toggle('hallo-btn');
-	nav.classList.toggle("scythes");
 	document.getElementById('filterBy').classList.toggle('disable');
 	document.getElementById('search-bar').classList.toggle('disable');
-	let alphaSortTag = document.getElementById('alphaSort');
-	alphaSortTag.classList.toggle('hallo-alpha');
 }
 
 var deselect_filter_halloween = true;
@@ -204,7 +203,7 @@ function deselect_content_filter(fromSort = false) {
 	contentSub.onmouseenter = function (){subMenuScrollBack(this)};
 	contentSub.onmouseleave = function (){};
 	filterEnabled = false;
-	contentSub.style.backgroundColor = '';
+	contentSub && (contentSub.style.backgroundColor = '');
 	isReverse = false;
 	search.value = '';
 	searchedContent = '';
